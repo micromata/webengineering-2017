@@ -11,16 +11,14 @@ import java.util.List;
 @RestController
 @SpringBootApplication
 public class Main {
+    private List<String> posts = new LinkedList<>();
+
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
 
     @RequestMapping("/posts")
     public List<String> getPostList() {
-        List<String> posts = new LinkedList<>();
-        posts.add("Post 1");
-        posts.add("Post 2");
-
         return posts;
     }
 }
