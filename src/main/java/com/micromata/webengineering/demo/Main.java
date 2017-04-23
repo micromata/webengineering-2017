@@ -17,7 +17,7 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    @RequestMapping("/posts")
+    @RequestMapping("/post")
     public List<String> getPostList() {
         return posts;
     }
