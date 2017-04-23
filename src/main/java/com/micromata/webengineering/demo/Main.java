@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @RestController
 @SpringBootApplication
@@ -14,8 +15,12 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    @RequestMapping("/")
-    public String index() {
-        return new Date().toString();
+    @RequestMapping("/posts")
+    public List<String> getPostList() {
+        List<String> posts = new LinkedList<>();
+        posts.add("Post 1");
+        posts.add("Post 2");
+
+        return posts;
     }
 }
