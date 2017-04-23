@@ -1,1 +1,4 @@
 *.pptx
+*.iml
+.idea/
+target
