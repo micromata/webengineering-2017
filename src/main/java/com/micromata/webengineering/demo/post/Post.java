@@ -6,8 +6,7 @@ public class Post {
     private String title;
     private Date createdAt;
 
-    public Post(String title) {
-        this.title = title;
+    public Post() {
         createdAt = new Date();
     }
 
@@ -17,5 +16,9 @@ public class Post {
 
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
