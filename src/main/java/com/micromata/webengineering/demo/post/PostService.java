@@ -27,8 +27,7 @@ public class PostService {
      *
      * @param title the post title.
      */
-    public void addPost(String title) {
-        Post post = new Post(title);
+    public void addPost(Post post) {
         posts.add(post);
     }
 }
