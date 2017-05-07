@@ -13,7 +13,7 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping("/post")
+    @RequestMapping(value = "/post", method = RequestMethod.GET)
     public List<Post> getPostList() {
         return postService.getPosts();
     }
