@@ -27,4 +27,9 @@ public class PostController {
     public Post getPost(@PathVariable Long id) {
         return postService.getPost(id);
     }
+
+    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
+    public void deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+    }
 }

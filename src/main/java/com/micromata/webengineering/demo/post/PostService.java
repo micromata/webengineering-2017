@@ -2,6 +2,7 @@ package com.micromata.webengineering.demo.post;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -47,5 +48,21 @@ public class PostService {
         }
 
         return null;
+    }
+
+    /**
+     * Remove a single post.
+     *
+     * @param id the post's id.
+     */
+    public void deletePost(Long id) {
+        Iterator<Post> it = posts.iterator();
+        while (it.hasNext()) {
+            Post post = it.next();
+            if (post.getId().equals(id)) {
+                it.remove();
+                return;
+            }
+        }
     }
 }
