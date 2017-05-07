@@ -3,8 +3,6 @@ package com.micromata.webengineering.demo.post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * HTTP endpoint for a post-related HTTP requests.
  */
@@ -14,7 +12,7 @@ public class PostController {
     private PostService postService;
 
     @RequestMapping(value = "/post", method = RequestMethod.GET)
-    public List<Post> getPostList() {
+    public Iterable<Post> getPostList() {
         return postService.getPosts();
     }
 
