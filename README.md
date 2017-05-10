@@ -10,7 +10,5 @@ This is the repository for the lecture Webengineering in the summer semester 201
 
 ## Slides and videos
 
-*The audio in the video is corrupted. I'll upload a new video this week.*
-
-* 2017-05-08 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-05-08-webengineering.pdf) [video](https://www.youtube.com/watch?v=Q1L-GIn1l0Y)
+* 2017-05-08 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-05-08-webengineering.pdf) [video](https://youtu.be/nBTvxfcJV0A)
 * 2017-04-24 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-04-24-webengineering.pdf) [video](https://www.youtube.com/watch?v=FmkrTbNu9yc)
