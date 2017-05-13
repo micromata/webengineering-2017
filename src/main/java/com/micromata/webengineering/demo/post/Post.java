@@ -5,11 +5,13 @@ import java.util.Date;
 
 @Entity
 public class Post {
+    public static final int TITLE_LENGTH = 1024;
+
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(length = 1024)
+    @Column(length = Post.TITLE_LENGTH)
     private String title;
     private Date createdAt;
 
