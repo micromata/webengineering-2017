@@ -1,7 +1,6 @@
 package com.micromata.webengineering.demo.post;
 
-import com.micromata.webengineering.demo.user.User;
-import com.micromata.webengineering.demo.user.UserRepository;
+import com.micromata.webengineering.demo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +12,9 @@ public class PostService {
     @Autowired
     private PostRepository repository;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * Retrieve the list of all posts.
      *
@@ -22,10 +24,6 @@ public class PostService {
         return repository.findAll();
     }
 
-
-    // Temporary --------------------------------------------------------------------------------------------------
-    @Autowired
-    private UserRepository userRepository;
 
     /**
      * Add a new post.
@@ -37,8 +35,9 @@ public class PostService {
         // if (post.getTitle() != null && post.getTitle().length() > 1024) {
         //     throw new IllegalArgumentException("Post title too long");
         // }
-        User author = userRepository.findByEmail("mlesniak@micromata.de");
-        post.setAuthor(author);
+
+        // Temporary hack:
+        post.setAuthor(userService.getCurrentUser());
 
         repository.save(post);
     }
