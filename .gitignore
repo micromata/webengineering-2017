@@ -4,3 +4,4 @@
 target
 
 *.mv.db
+*.trace.db
