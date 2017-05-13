@@ -28,8 +28,7 @@ public class PostController {
     public PostCreated addPost(@RequestBody Post post) {
         postService.addPost(post);
         PostCreated postCreated = new PostCreated();
-        postCreated.url = "http://" + addressService.getHostName() + ":" + addressService.getPort() + "/post/"
-                + post.getId();
+        postCreated.url = addressService.getServerURL() + "/post/" + post.getId();
         return postCreated;
     }
 
