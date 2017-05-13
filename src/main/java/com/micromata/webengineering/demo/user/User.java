@@ -1,5 +1,7 @@
 package com.micromata.webengineering.demo.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ public class User {
     private Long id;
 
     private String email;
+    @JsonIgnore
     private String password;
 
     public String getEmail() {
