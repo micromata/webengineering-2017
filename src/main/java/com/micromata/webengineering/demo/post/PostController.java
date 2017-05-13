@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private static class PostCreated {
         public String url;
+
+        public PostCreated(Post post) {
+            url = "http://localhost:8080/post/" + post.getId();
+        }
     }
 
     @Autowired
@@ -23,10 +27,7 @@ public class PostController {
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public PostCreated addPost(@RequestBody Post post) {
         postService.addPost(post);
-
-        PostCreated postCreated = new PostCreated();
-        postCreated.url = "http://localhost:8080/post/" + post.getId();
-        return postCreated;
+        return new PostCreated(post);
     }
 
     @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
