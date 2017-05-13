@@ -24,7 +24,7 @@ public class PostService {
     /**
      * Add a new post.
      *
-     * @param title the post title.
+     * @param post the post to add
      */
     public void addPost(Post post) {
         repository.save(post);
