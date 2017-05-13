@@ -3,6 +3,9 @@ package com.micromata.webengineering.demo.post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.Map;
+
 /**
  * HTTP endpoint for a post-related HTTP requests.
  */
@@ -17,8 +20,12 @@ public class PostController {
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public void addPost(@RequestBody Post post) {
+    public Map<String, String> addPost(@RequestBody Post post) {
         postService.addPost(post);
+
+        Map<String, String> url = Collections.singletonMap("url", "http://localhost:8080/post/" + post.getId());
+        return url;
+
     }
 
     @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
