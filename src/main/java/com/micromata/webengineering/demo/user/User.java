@@ -1,6 +1,17 @@
 package com.micromata.webengineering.demo.user;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+// The name "User" is a reserved name for postgres. That is, if we do not change the default name, everything will work
+// fine locally but not after we deployed the application on heroku.
+@Entity(name = "User_")
 public class User {
+    @Id
+    @GeneratedValue
+    private Long id;
+
     private String email;
     private String password;
 
@@ -20,11 +31,21 @@ public class User {
         this.password = password;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "id=" + id +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }
