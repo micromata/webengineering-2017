@@ -1,9 +1,6 @@
 package com.micromata.webengineering.demo.post;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,6 +9,7 @@ public class Post {
     @GeneratedValue
     private Long id;
 
+    @Column(length = 1024)
     private String title;
     private Date createdAt;
 
