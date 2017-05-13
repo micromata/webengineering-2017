@@ -27,6 +27,10 @@ public class PostService {
      * @param post the post to add
      */
     public void addPost(Post post) {
+        // Option 1: validating the title length is driven by a functional requirement.
+        // if (post.getTitle() != null && post.getTitle().length() > 1024) {
+        //     throw new IllegalArgumentException("Post title too long");
+        // }
         repository.save(post);
     }
 
