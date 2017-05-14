@@ -1,6 +1,9 @@
 package com.micromata.webengineering.demo.post;
 
+import com.micromata.webengineering.demo.user.User;
 import com.micromata.webengineering.demo.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +12,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PostService {
+    private static final Logger LOG = LoggerFactory.getLogger(PostService.class);
+
     @Autowired
     private PostRepository repository;
 
@@ -21,6 +26,9 @@ public class PostService {
      * @return post list
      */
     public Iterable<Post> getPosts() {
+        User currentUser = userService.getCurrentUser();
+        LOG.info("Current user {}", currentUser);
+
         return repository.findAll();
     }
 
@@ -35,10 +43,7 @@ public class PostService {
         // if (post.getTitle() != null && post.getTitle().length() > 1024) {
         //     throw new IllegalArgumentException("Post title too long");
         // }
-
-        // Temporary hack:
         post.setAuthor(userService.getCurrentUser());
-
         repository.save(post);
     }
 

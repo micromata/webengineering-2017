@@ -1,6 +1,7 @@
 package com.micromata.webengineering.demo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,8 +19,7 @@ public class UserService {
      * @return the current user.
      */
     public User getCurrentUser() {
-        // Temporary fix.
-        return userRepository.findByEmail("mlesniak@micromata.de");
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 
