@@ -21,4 +21,16 @@ public class UserService {
         // Temporary fix.
         return userRepository.findByEmail("mlesniak@micromata.de");
     }
+
+
+    /**
+     * Retrieve a user with the given email and password.
+     *
+     * @param email    email
+     * @param password password
+     * @return the user or null if none could be found
+     */
+    public User getUser(String email, String password) {
+        return userRepository.findByEmailAndPassword(email, password);
+    }
 }

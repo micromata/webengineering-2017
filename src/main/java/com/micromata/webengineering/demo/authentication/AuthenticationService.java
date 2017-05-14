@@ -1,15 +1,14 @@
 package com.micromata.webengineering.demo.authentication;
 
 import com.micromata.webengineering.demo.user.User;
-import com.micromata.webengineering.demo.user.UserRepository;
+import com.micromata.webengineering.demo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationService {
-    // TODO ML Use userService for clean architecture.
     @Autowired
-    private UserRepository repository;
+    private UserService userService;
 
     public static class UserToken {
         public User user;
@@ -17,7 +16,7 @@ public class AuthenticationService {
     }
 
     public UserToken login(String email, String password) {
-        User user = repository.login(email, password);
+        User user = userService.getUser(email, password);
         if (user == null) {
             return null;
         }
