@@ -1,5 +1,6 @@
 package com.micromata.webengineering.demo.authentication;
 
+import com.micromata.webengineering.demo.user.User;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,19 +12,22 @@ public class AuthenticationController {
     public static class UserLogin {
         public String email;
         public String password;
+    }
 
-        @Override
-        public String toString() {
-            return "UserLogin{" +
-                    "email='" + email + '\'' +
-                    ", password='" + password + '\'' +
-                    '}';
-        }
+    public static class UserToken {
+        public User user;
+        public String token;
     }
 
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(@RequestBody UserLogin userLogin) {
-        return "<JWT-TOKEN>: " + userLogin;
+    public UserToken login(@RequestBody UserLogin userLogin) {
+        UserToken token = new UserToken();
+        token.user = new User();
+        token.user.setEmail(userLogin.email);
+        token.user.setId(1L);
+        token.token = "<JWT-TOKEN>";
+
+        return token;
     }
 }
