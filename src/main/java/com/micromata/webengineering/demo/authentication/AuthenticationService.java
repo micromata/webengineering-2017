@@ -12,6 +12,8 @@ public class AuthenticationService {
     @Autowired
     private UserService userService;
 
+    private String secret = "Severus Snape was a good guy!";
+
     public static class UserToken {
         public User user;
         public String token;
@@ -23,7 +25,6 @@ public class AuthenticationService {
             return null;
         }
 
-        String secret = "Severus Snape was a good guy!";
         String token = Jwts.builder()
                 .setSubject(email)
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -33,5 +34,12 @@ public class AuthenticationService {
         userToken.user = user;
         userToken.token = token;
         return userToken;
+    }
+
+    public Object parseToken(String jwtToken) {
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parse(jwtToken)
+                .getBody();
     }
 }

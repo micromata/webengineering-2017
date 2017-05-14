@@ -1,7 +1,11 @@
 package com.micromata.webengineering.demo.authentication;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.SignatureException;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -27,9 +31,24 @@ public class JWTFilter extends GenericFilterBean {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
-        LOG.info("Request: " + httpServletRequest.getRequestURI());
-        // TODO ML Add validation logic for JWT token.
+        String auth = httpServletRequest.getHeader("Authorization");
+        if (!StringUtils.startsWith(auth, "Bearer ")) {
+            LOG.warn("No authorization token submitted");
+            httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return;
+        }
 
-        filterChain.doFilter(request, response);
+        // Extract token contents.
+        String token = auth.substring(7);
+        try {
+            Claims body = (Claims) authenticationService.parseToken(token);
+            String email = body.getSubject();
+            LOG.info("Successful login from {}", email);
+            // TODO ML Set user globally for following operations.
+            filterChain.doFilter(request, response);
+        } catch (SignatureException e) {
+            LOG.warn("Token is invalid: {}", token);
+            httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
     }
 }
