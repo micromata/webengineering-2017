@@ -63,6 +63,12 @@ public class PostService {
      * @param id the post's id.
      */
     public void deletePost(Long id) {
+        // Validate that user is allowed to delete post.
+        Post post = repository.findOne(id);
+        if (!post.getAuthor().equals(userService.getCurrentUser())) {
+            throw new IllegalStateException("User not allowed to delete post");
+        }
+
         repository.delete(id);
     }
 }
