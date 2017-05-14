@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 // The name "User" is a reserved name for postgres. That is, if we do not change the default name, everything will work
-// fine locally but not after we deployed the application on heroku.
+// fine locally but not after we deploy the application on heroku.
 @Entity(name = "User_")
 public class User {
     @Id
@@ -42,6 +42,8 @@ public class User {
         this.id = id;
     }
 
+    // See https://stackoverflow.com/questions/17027777/relationship-between-hashcode-and-equals-method-in-java for
+    // an explanation why we override both equals() and hashCode().
     @Override
     public boolean equals(Object o) {
         if (this == o) {
