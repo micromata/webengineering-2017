@@ -19,6 +19,7 @@ public class AuthenticationService {
         public String token;
     }
 
+
     public UserToken login(String email, String password) {
         User user = userService.getUser(email, password);
         if (user == null) {
@@ -27,6 +28,7 @@ public class AuthenticationService {
 
         String token = Jwts.builder()
                 .setSubject(email)
+                .setId(user.getId().toString())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
 
