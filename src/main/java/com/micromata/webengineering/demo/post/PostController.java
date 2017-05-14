@@ -21,12 +21,12 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping(value = "/post", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/post", method = RequestMethod.GET)
     public Iterable<Post> getPostList() {
         return postService.getPosts();
     }
 
-    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/post", method = RequestMethod.POST)
     public ResponseEntity<Object> addPost(@RequestBody Post post) {
         // Option 2: validating the title length is driven by a technical (non-functional) requirement.
         // We choose this option to show the usage of ResponseEntity.
@@ -40,12 +40,12 @@ public class PostController {
         return ResponseEntity.ok(postCreated);
     }
 
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/post/{id}", method = RequestMethod.GET)
     public Post getPost(@PathVariable Long id) {
         return postService.getPost(id);
     }
 
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/post/{id}", method = RequestMethod.DELETE)
     public void deletePost(@PathVariable Long id) {
         postService.deletePost(id);
     }
