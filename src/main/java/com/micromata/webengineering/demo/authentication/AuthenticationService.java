@@ -2,6 +2,8 @@ package com.micromata.webengineering.demo.authentication;
 
 import com.micromata.webengineering.demo.user.User;
 import com.micromata.webengineering.demo.user.UserService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +23,15 @@ public class AuthenticationService {
             return null;
         }
 
-        UserToken token = new UserToken();
-        token.user = user;
-        token.token = "<JWT-TOKEN>";
-        return token;
+        String secret = "Severus Snape was a good guy!";
+        String token = Jwts.builder()
+                .setSubject(email)
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
+
+        UserToken userToken = new UserToken();
+        userToken.user = user;
+        userToken.token = token;
+        return userToken;
     }
 }
