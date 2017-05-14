@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euf -o pipefail
+
+email="${1:-michael}"
+password="${2:-foo}"
+echo "email=$email"
+echo "password=$password"
+
+token=$(curl --silent -H'Content-Type: application/json' \
+    localhost:8080/user/login \
+    -d "{\"email\":\"$email\",\"password\":\"$password\"}" | \
+    python3 -c "import sys, json; print(json.load(sys.stdin)['token'])")
+
+curl --silent -H "Authorization: Bearer $token" localhost:8080/api/post | \
+    python3 -mjson.tool
