@@ -43,7 +43,7 @@ public class JWTFilter extends GenericFilterBean {
         try {
             Claims body = (Claims) authenticationService.parseToken(token);
             LOG.info("Successful login from {}/{}", body.getSubject(), body.getId());
-            // TODO ML Set user globally for following operations.
+            authenticationService.setUser(Long.parseLong(body.getId()), body.getSubject());
             filterChain.doFilter(request, response);
         } catch (SignatureException e) {
             LOG.warn("Token is invalid: {}", token);

@@ -5,6 +5,8 @@ import com.micromata.webengineering.demo.user.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,10 +40,20 @@ public class AuthenticationService {
         return userToken;
     }
 
+
     public Object parseToken(String jwtToken) {
         return Jwts.parser()
                 .setSigningKey(secret)
                 .parse(jwtToken)
                 .getBody();
+    }
+
+
+    public void setUser(Long id, String email) {
+        User user = new User();
+        user.setId(id);
+        user.setEmail(email);
+        UsernamePasswordAuthenticationToken secAuth = new UsernamePasswordAuthenticationToken(user, null);
+        SecurityContextHolder.getContext().setAuthentication(secAuth);
     }
 }
