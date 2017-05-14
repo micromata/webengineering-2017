@@ -1,7 +1,5 @@
 package com.micromata.webengineering.demo.authentication;
 
-import com.micromata.webengineering.demo.user.User;
-import com.micromata.webengineering.demo.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,27 +16,16 @@ public class AuthenticationController {
         public String password;
     }
 
-    public static class UserToken {
-        public User user;
-        public String token;
-    }
-
-
     @Autowired
-    private UserRepository userRepository;
+    private AuthenticationService service;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public ResponseEntity<UserToken> login(@RequestBody UserLogin userLogin) {
-        // Test, that retrieval of user works.
-        User user = userRepository.login(userLogin.email, userLogin.password);
+    public ResponseEntity<AuthenticationService.UserToken> login(@RequestBody UserLogin userLogin) {
+        AuthenticationService.UserToken token = service.login(userLogin.email, userLogin.password);
 
-        if (user == null) {
+        if (token == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-
-        UserToken token = new UserToken();
-        token.user = user;
-        token.token = "<JWT-TOKEN>";
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 }
