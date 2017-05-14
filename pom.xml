@@ -59,6 +59,11 @@
             <artifactId>jjwt</artifactId>
             <version>0.7.0</version>
         </dependency>
+        <!--We actually need spring-security simply for its request-based security context holder.-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <!--Utilities-->
         <dependency>
