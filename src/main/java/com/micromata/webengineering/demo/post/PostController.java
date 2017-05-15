@@ -36,7 +36,7 @@ public class PostController {
 
         postService.addPost(post);
         PostCreated postCreated = new PostCreated();
-        postCreated.url = addressService.getServerURL() + "/post/" + post.getId();
+        postCreated.url = addressService.getServerURL() + "/api/post/" + post.getId();
         return ResponseEntity.ok(postCreated);
     }
 
