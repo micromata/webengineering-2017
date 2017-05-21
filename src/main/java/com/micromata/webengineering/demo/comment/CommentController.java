@@ -13,12 +13,6 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @RequestMapping(value = "/api/comment", method = RequestMethod.GET)
-    public Iterable<Post> getPostList() {
-        // TODO ML
-        return null;
-    }
-
     @RequestMapping(value = "/api/comment", method = RequestMethod.POST)
     public ResponseEntity<Object> addComment(@RequestBody Post post) {
         return ResponseEntity.ok(null);
