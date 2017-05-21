@@ -77,6 +77,10 @@ public class CommentService {
         comment.setAuthor(userService.getCurrentUser());
         repository.save(comment);
 
+        if (true) {
+            throw new IllegalStateException("Something went wrong");
+        }
+
         // Append technically to post.
         postService.addComment(postId, comment);
 
