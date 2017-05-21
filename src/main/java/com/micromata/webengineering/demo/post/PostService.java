@@ -75,4 +75,21 @@ public class PostService {
 
         repository.delete(id);
     }
+
+
+    /**
+     * Find the corresponding parent post for a given comment.
+     *
+     * @param comment Comment
+     * @return Parent post or null if none could be found.
+     */
+    public void removeComment(Comment comment) {
+        LOG.debug("Trying to remove comment. id={}", comment.getId());
+        Post post = repository.findPostForComment(comment);
+        if (post == null) {
+            throw new IllegalArgumentException("No post found for comment");
+        }
+        post.getComments().remove(comment);
+        repository.save(post);
+    }
 }

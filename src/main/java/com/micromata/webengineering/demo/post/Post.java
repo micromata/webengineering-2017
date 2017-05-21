@@ -26,7 +26,7 @@ public class Post {
     private String title;
     private Date createdAt;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
 
     public Post() {

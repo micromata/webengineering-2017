@@ -1,5 +1,6 @@
 package com.micromata.webengineering.demo.comment;
 
+import com.micromata.webengineering.demo.post.PostService;
 import com.micromata.webengineering.demo.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,9 @@ public class CommentService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PostService postService;
+
 
     /**
      * Remove a single comment.
@@ -32,8 +36,9 @@ public class CommentService {
             LOG.info("Deleting comment not allowed. user={}, id={}", userService.getCurrentUser().getEmail(), id);
             throw new IllegalStateException("User not allowed to delete comment");
         }
-        LOG.info("Deleting comment. user={}, id={}", userService.getCurrentUser().getEmail(), id);
 
-        repository.delete(id);
+        // Since a comment is part of a post, its functional removal is also part of the PostService.
+        LOG.info("Deleting comment. user={}, id={}", userService.getCurrentUser().getEmail(), id);
+        postService.removeComment(comment);
     }
 }
