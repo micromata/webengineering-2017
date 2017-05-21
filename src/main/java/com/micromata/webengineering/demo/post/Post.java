@@ -7,6 +7,7 @@ import com.micromata.webengineering.demo.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -25,11 +26,12 @@ public class Post {
     private String title;
     private Date createdAt;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     public Post() {
         // Default constructor for JPA.
+        comments = new LinkedList<>();
     }
 
     /**

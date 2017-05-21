@@ -1,5 +1,6 @@
 package com.micromata.webengineering.demo.post;
 
+import com.micromata.webengineering.demo.comment.Comment;
 import com.micromata.webengineering.demo.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +40,10 @@ public class PostService {
         // Remark: I usually try to avoid variables and helper functions for logging, since it clutters the soruce code.
         LOG.info("Adding post. user={}, title={}", userService.getCurrentUser().getEmail(), post.getTitle());
 
-        // Option 1: validating the title length is driven by a functional requirement.
-        // if (post.getTitle() != null && post.getTitle().length() > 1024) {
-        //     throw new IllegalArgumentException("Post title too long");
-        // }
+        for (Comment comment : post.getComments()) {
+            comment.setAuthor(userService.getCurrentUser());
+        }
+
         post.setAuthor(userService.getCurrentUser());
         repository.save(post);
     }
