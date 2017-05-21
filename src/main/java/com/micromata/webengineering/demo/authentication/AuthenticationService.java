@@ -16,7 +16,8 @@ public class AuthenticationService {
     @Autowired
     private UserService userService;
 
-    private String secret = "Severus Snape was a good guy!";
+    @Value("${authenticationService.jwt.secret}")
+    private String JWTSecret;
 
     @Value("${authenticationService.salt}")
     private String salt;
@@ -47,7 +48,7 @@ public class AuthenticationService {
         String token = Jwts.builder()
                 .setSubject(email)
                 .setId(user.getId().toString())
-                .signWith(SignatureAlgorithm.HS512, secret)
+                .signWith(SignatureAlgorithm.HS512, JWTSecret)
                 .compact();
 
         UserToken userToken = new UserToken();
@@ -66,7 +67,7 @@ public class AuthenticationService {
      */
     public Object parseToken(String jwtToken) {
         return Jwts.parser()
-                .setSigningKey(secret)
+                .setSigningKey(JWTSecret)
                 .parse(jwtToken)
                 .getBody();
     }
