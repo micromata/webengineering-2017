@@ -18,7 +18,7 @@ public class CommentController {
         return ResponseEntity.ok(null);
     }
 
-    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.POST)
     public ResponseEntity<Object> editComment(@PathVariable Long id, @RequestBody Comment comment) {
         return ResponseEntity.ok(null);
     }
