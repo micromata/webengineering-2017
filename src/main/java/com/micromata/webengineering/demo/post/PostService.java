@@ -1,6 +1,5 @@
 package com.micromata.webengineering.demo.post;
 
-import com.micromata.webengineering.demo.user.User;
 import com.micromata.webengineering.demo.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +25,7 @@ public class PostService {
      * @return post list
      */
     public Iterable<Post> getPosts() {
-        User currentUser = userService.getCurrentUser();
-        LOG.info("Current user {}", currentUser);
-
+        LOG.info("Returning posts. user={}", userService.getCurrentUser().getEmail());
         return repository.findAll();
     }
 
@@ -39,6 +36,9 @@ public class PostService {
      * @param post the post to add
      */
     public void addPost(Post post) {
+        // Remark: I usually try to avoid variables and helper functions for logging, since it clutters the soruce code.
+        LOG.info("Adding post. user={}, title={}", userService.getCurrentUser().getEmail(), post.getTitle());
+
         // Option 1: validating the title length is driven by a functional requirement.
         // if (post.getTitle() != null && post.getTitle().length() > 1024) {
         //     throw new IllegalArgumentException("Post title too long");
@@ -54,6 +54,7 @@ public class PostService {
      * @return post with the id or null if no post is found
      */
     public Post getPost(Long id) {
+        LOG.info("Retrieving post. user={}, id={}", userService.getCurrentUser().getEmail(), id);
         return repository.findOne(id);
     }
 
@@ -66,8 +67,10 @@ public class PostService {
         // Validate that user is allowed to delete post.
         Post post = repository.findOne(id);
         if (!post.getAuthor().equals(userService.getCurrentUser())) {
+            LOG.info("Deleting post not allowed. user={}, id={}", userService.getCurrentUser().getEmail(), id);
             throw new IllegalStateException("User not allowed to delete post");
         }
+        LOG.info("Deleting post. user={}, id={}", userService.getCurrentUser().getEmail(), id);
 
         repository.delete(id);
     }

@@ -5,6 +5,8 @@ import com.micromata.webengineering.demo.user.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationService {
+    private static final Logger LOG = LoggerFactory.getLogger(AuthenticationService.class);
+
     @Autowired
     private UserService userService;
 
@@ -42,8 +46,10 @@ public class AuthenticationService {
         String hashedPassword = hashPassword(password);
         User user = userService.getUser(email, hashedPassword);
         if (user == null) {
+            LOG.info("User unable to login. user={}", email);
             return null;
         }
+        LOG.info("User successfully logged in. user={}", email);
 
         String token = Jwts.builder()
                 .setSubject(email)
@@ -66,11 +72,13 @@ public class AuthenticationService {
      * @return JWT body
      */
     public Object parseToken(String jwtToken) {
+        LOG.debug("Parsing JWT token. JWTtoken={}", jwtToken);
         return Jwts.parser()
                 .setSigningKey(JWTSecret)
                 .parse(jwtToken)
                 .getBody();
     }
+
 
     /**
      * Set a user for the current request.
@@ -79,6 +87,7 @@ public class AuthenticationService {
      * @param email user email
      */
     public void setUser(Long id, String email) {
+        LOG.debug("Setting user context. id={}, user={}", id, email);
         User user = new User();
         user.setId(id);
         user.setEmail(email);

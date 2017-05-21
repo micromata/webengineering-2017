@@ -1,5 +1,7 @@
 package com.micromata.webengineering.demo.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     private UserRepository userRepository;
 
@@ -31,6 +35,7 @@ public class UserService {
      * @return the user or null if none could be found
      */
     public User getUser(String email, String password) {
+        LOG.debug("Retrieving user from database. user={}", email);
         return userRepository.findByEmailAndPassword(email, password);
     }
 }
