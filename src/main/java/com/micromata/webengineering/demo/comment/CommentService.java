@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 /**
  * Handle all CRUD operations for posts.
  */
@@ -70,16 +72,13 @@ public class CommentService {
      * @param text   text of the comment
      * @return id of the corresponding comment
      */
+    @Transactional
     public Long addComment(Long postId, String text) {
         // Persist comment.
         Comment comment = new Comment();
         comment.setText(text);
         comment.setAuthor(userService.getCurrentUser());
         repository.save(comment);
-
-        if (true) {
-            throw new IllegalStateException("Something went wrong");
-        }
 
         // Append technically to post.
         postService.addComment(postId, comment);
