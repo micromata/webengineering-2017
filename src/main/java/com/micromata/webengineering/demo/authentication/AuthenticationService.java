@@ -4,6 +4,7 @@ import com.micromata.webengineering.demo.user.User;
 import com.micromata.webengineering.demo.user.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,7 +34,8 @@ public class AuthenticationService {
      * @return a UserToken or null if the credentials are not valid
      */
     public UserToken login(String email, String password) {
-        User user = userService.getUser(email, password);
+        String hashedPassword = hashPassword(password);
+        User user = userService.getUser(email, hashedPassword);
         if (user == null) {
             return null;
         }
@@ -77,5 +79,17 @@ public class AuthenticationService {
         user.setEmail(email);
         UsernamePasswordAuthenticationToken secAuth = new UsernamePasswordAuthenticationToken(user, null);
         SecurityContextHolder.getContext().setAuthentication(secAuth);
+    }
+
+
+    /**
+     * Return a password hashed with SHA-512.
+     *
+     * @param password plain text password
+     * @return hashed password
+     */
+    public String hashPassword(String password) {
+        return DigestUtils.sha512Hex(password);
+
     }
 }
