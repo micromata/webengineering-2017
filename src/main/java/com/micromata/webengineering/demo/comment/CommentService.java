@@ -71,7 +71,16 @@ public class CommentService {
      * @return id of the corresponding comment
      */
     public Long addComment(Long postId, String text) {
-        return postService.addComment(postId, text);
+        // Persist comment.
+        Comment comment = new Comment();
+        comment.setText(text);
+        comment.setAuthor(userService.getCurrentUser());
+        repository.save(comment);
+
+        // Append technically to post.
+        postService.addComment(postId, comment);
+
+        return comment.getId();
     }
 
 

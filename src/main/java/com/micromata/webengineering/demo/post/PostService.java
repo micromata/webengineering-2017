@@ -97,25 +97,18 @@ public class PostService {
     /**
      * Append new comment to an existing post.
      *
-     * @param id   id of the post
-     * @param text comment's text
-     * @return comment id
+     * @param id      id of the post
+     * @param comment comment to append
      */
-    public Long addComment(Long id, String text) {
-        LOG.info("Adding comment to post. user={}, id={}", userService.getCurrentUser().getEmail(), id);
+    public void addComment(Long id, Comment comment) {
+        LOG.info("Adding comment to post. user={}, id={}, commentId={}", userService.getCurrentUser().getEmail(),
+                id, comment.getId());
         Post post = repository.findOne(id);
         if (post == null) {
             throw new IllegalArgumentException("Post not found. id=" + id);
         }
 
-        Comment comment = new Comment();
-        comment.setText(text);
-        comment.setAuthor(userService.getCurrentUser());
         post.getComments().add(comment);
         repository.save(post);
-
-        // While everything works from a function perspective, i.e the comment is stored, a new object is created
-        // and we do not have a reference, hence no id. :-(
-        return comment.getId();
     }
 }

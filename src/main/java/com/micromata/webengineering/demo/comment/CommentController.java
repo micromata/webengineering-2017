@@ -15,7 +15,7 @@ public class CommentController {
     }
 
     private static class NewComment {
-        public Long postID;
+        public Long postid;
         public String text;
     }
 
@@ -34,7 +34,7 @@ public class CommentController {
 
     @RequestMapping(value = "/api/comment", method = RequestMethod.POST)
     public ResponseEntity<CommentCreated> addComment(@RequestBody NewComment newComment) {
-        Long id = commentService.addComment(newComment.postID, newComment.text);
+        Long id = commentService.addComment(newComment.postid, newComment.text);
         CommentCreated commentCreated = new CommentCreated();
         commentCreated.url = addressService.getServerURL() + "/api/comment/" + id;
         return ResponseEntity.ok(commentCreated);
