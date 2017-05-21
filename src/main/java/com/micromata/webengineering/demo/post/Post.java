@@ -25,6 +25,23 @@ public class Post {
     @OneToMany
     private List<Comment> comments;
 
+    public Post() {
+        // Default constructor for JPA.
+    }
+
+    /**
+     * Constructor for Post's CrudRepository (findAll).
+     *
+     * @param author
+     * @param title
+     * @param createdAt
+     */
+    public Post(Long id, User author, String title, Date createdAt) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.createdAt = createdAt;
+    }
 
     public List<Comment> getComments() {
         return comments;
