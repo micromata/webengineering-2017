@@ -46,6 +46,7 @@ public class Post {
         this.author = author;
         this.title = title;
         this.createdAt = createdAt;
+        comments = new LinkedList<>();
     }
 
     public List<Comment> getComments() {
