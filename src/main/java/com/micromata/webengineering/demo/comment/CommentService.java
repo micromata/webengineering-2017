@@ -41,4 +41,17 @@ public class CommentService {
         LOG.info("Deleting comment. user={}, id={}", userService.getCurrentUser().getEmail(), id);
         postService.removeComment(comment);
     }
+
+    public void update(Long id, Comment updateComment) {
+        // Validate that user is allowed to delete comment.
+        Comment comment = repository.findOne(id);
+        if (!comment.getAuthor().equals(userService.getCurrentUser())) {
+            LOG.info("Updating comment not allowed. user={}, id={}", userService.getCurrentUser().getEmail(), id);
+            throw new IllegalStateException("User not allowed to update comment");
+        }
+        LOG.info("Updating comment. user={}, id={}", userService.getCurrentUser().getEmail(), id);
+
+        comment.setText(updateComment.getText());
+        repository.save(comment);
+    }
 }
