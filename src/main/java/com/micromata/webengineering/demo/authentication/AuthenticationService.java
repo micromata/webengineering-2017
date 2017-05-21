@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ public class AuthenticationService {
     private UserService userService;
 
     private String secret = "Severus Snape was a good guy!";
+
+    @Value("${authenticationService.salt}")
+    private String salt;
 
     /**
      * Return object containing a valid user and his corresponding JWT token.
@@ -83,13 +87,15 @@ public class AuthenticationService {
 
 
     /**
-     * Return a password hashed with SHA-512.
+     * Return (salt + password) hashed with SHA-512.
+     *
+     * The salt is configured in the property authenticationService.salt.
      *
      * @param password plain text password
      * @return hashed password
      */
     public String hashPassword(String password) {
-        return DigestUtils.sha512Hex(password);
+        return DigestUtils.sha512Hex(salt + password);
 
     }
 }
