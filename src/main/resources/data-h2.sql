@@ -4,8 +4,11 @@
 
 
 -- Remove everything.
+DELETE FROM POST_COMMENTS;
+DELETE FROM COMMENT;
 DELETE FROM POST;
 DELETE FROM USER_;
+
 
 -- Insert new users.
 INSERT INTO USER_ (id, email, PASSWORD) VALUES
@@ -19,4 +22,14 @@ INSERT INTO POST (ID, TITLE, CREATED_AT, AUTHOR_ID) VALUES
   (1, 'title-1', parsedatetime('2017-05-20 05:01', 'yyyy-MM-dd HH:mm'), 1),
   (2, 'title-2', parsedatetime('2017-05-21 12:01', 'yyyy-MM-dd HH:mm'), 2);
 
+-- Add some comments.
+INSERT INTO COMMENT (ID, CREATED_AT, AUTHOR_ID, TEXT) VALUES
+  (1, parsedatetime('2017-05-20 05:01', 'yyyy-MM-dd HH:mm'), 1, 'comment-1'),
+  (2, parsedatetime('2017-05-20 06:01', 'yyyy-MM-dd HH:mm'), 1, 'comment-2'),
+  (3, parsedatetime('2017-05-20 05:01', 'yyyy-MM-dd HH:mm'), 2, 'comment-3');
 
+-- Link posts and comments.
+INSERT INTO POST_COMMENTS (POST_ID, COMMENTS_ID) VALUES
+  (1, 1),
+  (1, 2),
+  (2, 3);
