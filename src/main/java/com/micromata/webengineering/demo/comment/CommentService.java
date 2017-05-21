@@ -42,6 +42,13 @@ public class CommentService {
         postService.removeComment(comment);
     }
 
+
+    /**
+     * Update a comment's text.
+     *
+     * @param id            id of the comment
+     * @param updateComment the updated comment. Note that currently only its text value is used.
+     */
     public void update(Long id, Comment updateComment) {
         // Validate that user is allowed to delete comment.
         Comment comment = repository.findOne(id);
@@ -53,5 +60,29 @@ public class CommentService {
 
         comment.setText(updateComment.getText());
         repository.save(comment);
+    }
+
+
+    /**
+     * Add a comment to an existing post.
+     *
+     * @param postId id of a post
+     * @param text   text of the comment
+     * @return id of the corresponding comment
+     */
+    public Long addComment(Long postId, String text) {
+        return postService.addComment(postId, text);
+    }
+
+
+    /**
+     * Return a single comment.
+     *
+     * @param id comment id
+     * @return a comment
+     */
+    public Comment getComment(Long id) {
+        LOG.info("Retrieving comment. user={}, id={}", userService.getCurrentUser().getEmail(), id);
+        return repository.findOne(id);
     }
 }
