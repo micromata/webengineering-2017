@@ -45,7 +45,7 @@ public class JWTFilter extends GenericFilterBean {
         String token = auth.substring(7);
         try {
             Claims body = (Claims) authenticationService.parseToken(token);
-            LOG.info("Successful login from id={}, user={}", body.getId(), body.getSubject());
+            LOG.debug("Successful authentication from id={}, user={}", body.getId(), body.getSubject());
             userService.setCurrentUser(Long.parseLong(body.getId()), body.getSubject());
             filterChain.doFilter(request, response);
         } catch (SignatureException | NullPointerException e) {
