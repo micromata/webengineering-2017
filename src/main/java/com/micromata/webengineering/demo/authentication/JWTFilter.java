@@ -1,5 +1,6 @@
 package com.micromata.webengineering.demo.authentication;
 
+import com.micromata.webengineering.demo.user.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureException;
 import org.apache.commons.lang3.StringUtils;
@@ -20,9 +21,11 @@ public class JWTFilter extends GenericFilterBean {
     private static final Logger LOG = LoggerFactory.getLogger(JWTFilter.class);
 
     private AuthenticationService authenticationService;
+    private UserService userService;
 
-    public JWTFilter(AuthenticationService authenticationService) {
+    public JWTFilter(AuthenticationService authenticationService, UserService userService) {
         this.authenticationService = authenticationService;
+        this.userService = userService;
     }
 
     @Override
@@ -42,11 +45,11 @@ public class JWTFilter extends GenericFilterBean {
         String token = auth.substring(7);
         try {
             Claims body = (Claims) authenticationService.parseToken(token);
-            LOG.info("Successful login from {}/{}", body.getSubject(), body.getId());
-            authenticationService.setUser(Long.parseLong(body.getId()), body.getSubject());
+            LOG.info("Successful login from id={}, user={}", body.getId(), body.getSubject());
+            userService.setCurrentUser(Long.parseLong(body.getId()), body.getSubject());
             filterChain.doFilter(request, response);
-        } catch (SignatureException e) {
-            LOG.warn("Token is invalid: {}", token);
+        } catch (SignatureException | NullPointerException e) {
+            LOG.warn("Token is invalid. token={}", token);
             httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }

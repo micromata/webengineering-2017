@@ -3,6 +3,7 @@ package com.micromata.webengineering.demo.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,22 @@ public class UserService {
     public User getCurrentUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+
+    /**
+     * Set a user for the current request.
+     *
+     * @param id    user id
+     * @param email user email
+     */
+    public void setCurrentUser(Long id, String email) {
+        LOG.debug("Setting user context. id={}, user={}", id, email);
+        User user = new User();
+        user.setId(id);
+        user.setEmail(email);
+        UsernamePasswordAuthenticationToken secAuth = new UsernamePasswordAuthenticationToken(user, null);
+        SecurityContextHolder.getContext().setAuthentication(secAuth);
+    }
+
 
 
     /**
