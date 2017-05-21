@@ -1,5 +1,6 @@
 package com.micromata.webengineering.demo.post;
 
+import com.micromata.webengineering.demo.user.UserService;
 import com.micromata.webengineering.demo.util.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/api/post", method = RequestMethod.GET)
     public Iterable<Post> getPostList() {
         return postService.getPosts();
@@ -28,6 +32,13 @@ public class PostController {
 
     @RequestMapping(value = "/api/post", method = RequestMethod.POST)
     public ResponseEntity<Object> addPost(@RequestBody Post post) {
+        // A pragmatic approach to security which does not use much framework-specific magic. While other approaches
+        // with annotations, etc. are possible they are much more complex while this is quite easy to understand and
+        // extend.
+        if (userService.isAnonymous()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         // Option 2: validating the title length is driven by a technical (non-functional) requirement.
         // We choose this option to show the usage of ResponseEntity.
         if (post.getTitle() != null && post.getTitle().length() > Post.TITLE_LENGTH) {
