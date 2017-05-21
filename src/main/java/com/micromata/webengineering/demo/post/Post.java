@@ -1,9 +1,11 @@
 package com.micromata.webengineering.demo.post;
 
+import com.micromata.webengineering.demo.comment.Comment;
 import com.micromata.webengineering.demo.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -20,6 +22,17 @@ public class Post {
     private String title;
     private Date createdAt;
 
+    @OneToMany
+    private List<Comment> comments;
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public String getTitle() {
         return title;
