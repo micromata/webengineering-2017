@@ -1,5 +1,7 @@
 package com.micromata.webengineering.demo.post;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.micromata.webengineering.demo.comment.Comment;
 import com.micromata.webengineering.demo.user.User;
 
@@ -12,6 +14,7 @@ public class Post {
     public static final int TITLE_LENGTH = 1024;
 
     @Id
+    @JsonIgnore
     @GeneratedValue
     private Long id;
 
@@ -66,8 +69,14 @@ public class Post {
     }
 
 
+    @JsonProperty
     public Long getId() {
         return id;
+    }
+
+    @JsonIgnore
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public User getAuthor() {
