@@ -13,8 +13,10 @@ INSERT INTO USER_ (id, email, PASSWORD) VALUES
   (2, 'kai',     '9036c1111fdcbfa01a60a3f5d4647e7369caf5153b5e65eb7f45688748d070157fe9b62650ee564fbbcb42e6efc79df3238b8e1c10325b2e998f6d882e4d2071');     -- bar
 
 -- Add some posts.
-INSERT INTO POST (id, title, AUTHOR_ID) VALUES
-  (1, 'title-1', 1),
-  (2, 'title-2', 2);
+-- Used search terms "h2 timestamp", the second link lead to parsedatetime.
+-- Note that JPA transforms your column names from camelCase to camel_case using underscores.
+INSERT INTO POST (ID, TITLE, CREATED_AT, AUTHOR_ID) VALUES
+  (1, 'title-1', parsedatetime('2017-05-20 05:01', 'yyyy-MM-dd HH:mm'), 1),
+  (2, 'title-2', parsedatetime('2017-05-21 12:01', 'yyyy-MM-dd HH:mm'), 2);
 
 
