@@ -1,6 +1,7 @@
 package com.micromata.webengineering.demo.comment;
 
 import com.micromata.webengineering.demo.post.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class CommentController {
+    @Autowired
+    private CommentService commentService;
+
     @RequestMapping(value = "/api/comment", method = RequestMethod.GET)
     public Iterable<Post> getPostList() {
         // TODO ML
@@ -27,6 +31,6 @@ public class CommentController {
 
     @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.DELETE)
     public void deleteComment(@PathVariable Long id) {
-        // TODO ML
+        commentService.deleteComment(id);
     }
 }

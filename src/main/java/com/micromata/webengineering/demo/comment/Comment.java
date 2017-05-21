@@ -53,6 +53,26 @@ public class Comment {
         this.createdAt = createdAt;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Comment comment = (Comment) o;
+        return id != null ? id.equals(comment.id) : comment.id == null;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+
     /**
      * This method is called before an entity is persisted in the database. This is in contrast to our previous
      * approach where an object's createdAt depends on the date of its instantiation.
