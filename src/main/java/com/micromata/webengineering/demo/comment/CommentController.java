@@ -17,7 +17,6 @@ public class CommentController {
     }
 
     private static class NewComment {
-        public Long postid;
         public String text;
     }
 
@@ -31,32 +30,32 @@ public class CommentController {
     private UserService userService;
 
 
-    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/post/{postId}/comment/{id}", method = RequestMethod.GET)
     public Comment getComment(@PathVariable Long id) {
         return commentService.getComment(id);
     }
 
 
-    @RequestMapping(value = "/api/comment", method = RequestMethod.POST)
-    public ResponseEntity<CommentCreated> addComment(@RequestBody NewComment newComment) {
+    @RequestMapping(value = "/api/post/{postid}/comment", method = RequestMethod.POST)
+    public ResponseEntity<CommentCreated> addComment(@PathVariable Long postid, @RequestBody NewComment newComment) {
         if (userService.isAnonymous()) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        Long id = commentService.addComment(newComment.postid, newComment.text);
+        Long id = commentService.addComment(postid, newComment.text);
         CommentCreated commentCreated = new CommentCreated();
-        commentCreated.url = addressService.getServerURL() + "/api/comment/" + id;
+        commentCreated.url = addressService.getServerURL() + "/api/post/" + postid + "/comment/" + id;
         return ResponseEntity.ok(commentCreated);
     }
 
 
-    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/post/{postid}/comment/{id}", method = RequestMethod.POST)
     public void editComment(@PathVariable Long id, @RequestBody Comment comment) {
         commentService.update(id, comment);
     }
 
 
-    @RequestMapping(value = "/api/comment/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/post/{postid}/comment/{id}", method = RequestMethod.DELETE)
     public void deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);
     }
