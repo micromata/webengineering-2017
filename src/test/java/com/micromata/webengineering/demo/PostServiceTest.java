@@ -3,6 +3,8 @@ package com.micromata.webengineering.demo;
 
 import com.micromata.webengineering.demo.post.Post;
 import com.micromata.webengineering.demo.post.PostService;
+import com.micromata.webengineering.demo.user.UserService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,14 @@ import static org.junit.Assert.assertNotNull;
 public class PostServiceTest {
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private UserService userService;
+
+    @Before
+    public void setup() {
+        userService.setCurrentUser(1L, "michael");
+    }
 
     @Test
     public void notNull() {
