@@ -13,7 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -33,8 +35,28 @@ public class IntegrationTest {
     @Test
     public void testPostList() {
         RestTemplate rest = new RestTemplate();
-        ResponseEntity<List> response = rest.getForEntity("http://localhost:" + port + "/api/post", List.class);
+        ResponseEntity<List> response = rest.getForEntity(getPostURL(), List.class);
         List<Post> posts = response.getBody();
+        assertEquals(200, response.getStatusCodeValue());
         assertTrue(posts.size() == 0);
     }
+
+    /**
+     * Test that authentication and posting posts works.
+     */
+    @Test
+    public void testAddPost() {
+        RestTemplate rest = new RestTemplate();
+
+        Post post = new Post();
+        post.setTitle("test-post");
+        ResponseEntity<Map> response = rest.postForEntity(getPostURL(), post, Map.class);
+    }
+
+
+    private String getPostURL() {
+        return "http://localhost:" + port + "/api/post";
+    }
+
+
 }
