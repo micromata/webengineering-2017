@@ -1,8 +1,6 @@
-package com.micromata.webengineering.demo;
+package com.micromata.webengineering.demo.post;
 
 
-import com.micromata.webengineering.demo.post.Post;
-import com.micromata.webengineering.demo.post.PostService;
 import com.micromata.webengineering.demo.user.UserService;
 import org.junit.Before;
 import org.junit.Test;
