@@ -1,7 +1,6 @@
-package com.micromata.webengineering.demo.post.util;
+package com.micromata.webengineering.demo.util;
 
 
-import com.micromata.webengineering.demo.util.AddressService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
-package com.micromata.webengineering.demo.post.util;
+package com.micromata.webengineering.demo.util;
 
 
-import com.micromata.webengineering.demo.util.AddressService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
