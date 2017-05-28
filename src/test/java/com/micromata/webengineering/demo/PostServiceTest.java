@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.Iterator;
 import java.util.UUID;
 
@@ -34,11 +35,6 @@ public class PostServiceTest {
     @Before
     public void setup() {
         userService.setCurrentUser(1L, "michael");
-
-        // Clean up posts. Note that there is a better solution (see next commit).
-        for (Post post : postService.getPosts()) {
-            postService.deletePost(post.getId());
-        }
     }
 
     /**
@@ -54,6 +50,7 @@ public class PostServiceTest {
      * Test that adding a new post leads to an id (and the post is thus persisted).
      */
     @Test
+    @Transactional
     public void testPostAdd() {
         LOG.info("Number of posts: {}", countPosts());
         Post post = new Post();
@@ -73,6 +70,7 @@ public class PostServiceTest {
      * testing core technologies in the lecture.
      */
     @Test
+    @Transactional
     public void testPostPersisted() {
         LOG.info("Number of posts: {}", countPosts());
         String uuid = UUID.randomUUID().toString();
