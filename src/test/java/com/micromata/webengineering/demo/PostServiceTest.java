@@ -34,6 +34,11 @@ public class PostServiceTest {
     @Before
     public void setup() {
         userService.setCurrentUser(1L, "michael");
+
+        // Clean up posts. Note that there is a better solution (see next commit).
+        for (Post post : postService.getPosts()) {
+            postService.deletePost(post.getId());
+        }
     }
 
     /**
