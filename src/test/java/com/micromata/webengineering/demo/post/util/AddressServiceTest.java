@@ -6,10 +6,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AddressServiceTest {
@@ -18,6 +20,6 @@ public class AddressServiceTest {
 
     @Test
     public void testService() {
-        assertEquals("http://localhost:8080/", addressService.getServerURL());
+        assertEquals("foo", addressService.getServerURL());
     }
 }
