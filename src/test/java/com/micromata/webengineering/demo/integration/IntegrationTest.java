@@ -48,20 +48,30 @@ public class IntegrationTest {
      */
     @Test
     public void testAddPost() {
-        RestTemplate rest = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYWkiLCJqdGkiOiIyIn0.h3ezvhsje3tpvHbXxz7TUmy7KhT5yjtljXKvDeo8MM2RTAEIP6l2vdRHw2KKg0-HgK-8CsMY5im3kp6zIogUTQ");
-        Post post = new Post();
         String title = "test-post";
+        Post post = new Post();
         post.setTitle(title);
-        HttpEntity<Post> entity = new HttpEntity<>(post, headers);
-        ResponseEntity<Map> response = rest.postForEntity(getPostURL(), entity, Map.class);
-
+        RestTemplate rest = new RestTemplate();
+        ResponseEntity<Map> response = rest.postForEntity(getPostURL(), getEntity(post), Map.class);
 
         String url = fixResponseURL((String) response.getBody().get("url"));
         Post storedPost = rest.getForObject(url, Post.class);
         assertEquals(title, storedPost.getTitle());
         assertEquals("kai", storedPost.getAuthor().getEmail());
+    }
+
+
+    /**
+     * Create a HTTP entity to be used in authenticated requests. The default user is kai.
+     *
+     * @param entity object
+     * @param <T>    Object's type
+     * @return an entityt with authentication header.
+     */
+    private <T> HttpEntity<T> getEntity(T entity) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYWkiLCJqdGkiOiIyIn0.h3ezvhsje3tpvHbXxz7TUmy7KhT5yjtljXKvDeo8MM2RTAEIP6l2vdRHw2KKg0-HgK-8CsMY5im3kp6zIogUTQ");
+        return new HttpEntity<>(entity, headers);
     }
 
 
