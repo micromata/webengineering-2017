@@ -7,10 +7,13 @@ import com.micromata.webengineering.demo.user.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Iterator;
 import java.util.UUID;
 
 import static org.junit.Assert.*;
@@ -20,6 +23,8 @@ import static org.junit.Assert.*;
 // Enable Spring features, e.g. loading of application-properties, etc.
 @SpringBootTest
 public class PostServiceTest {
+    private static final Logger LOG = LoggerFactory.getLogger(PostServiceTest.class);
+
     @Autowired
     private PostService postService;
 
@@ -45,6 +50,7 @@ public class PostServiceTest {
      */
     @Test
     public void testPostAdd() {
+        LOG.info("Number of posts: {}", countPosts());
         Post post = new Post();
         post.setTitle("Test");
 
@@ -63,6 +69,7 @@ public class PostServiceTest {
      */
     @Test
     public void testPostPersisted() {
+        LOG.info("Number of posts: {}", countPosts());
         String uuid = UUID.randomUUID().toString();
 
         Post post = new Post();
@@ -75,5 +82,17 @@ public class PostServiceTest {
 
         Post storedPost = postService.getPost(id);
         assertEquals("Post correctly stored", storedPost.getTitle(), uuid);
+    }
+
+
+    private int countPosts() {
+        int count = 0;
+        Iterator<Post> it = postService.getPosts().iterator();
+        while (it.hasNext()) {
+            it.next();
+            count++;
+        }
+
+        return count;
     }
 }
