@@ -1,6 +1,7 @@
 package com.micromata.webengineering.demo;
 
 
+import com.micromata.webengineering.demo.post.Post;
 import com.micromata.webengineering.demo.post.PostService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,5 +22,12 @@ public class PostServiceTest {
     @Test
     public void notNull() {
         assertNotNull("We should have an instance of postService", postService);
+    }
+
+    @Test
+    public void testPostAdd() {
+        Post post = new Post();
+        post.setTitle("Test");
+        postService.addPost(post);
     }
 }
