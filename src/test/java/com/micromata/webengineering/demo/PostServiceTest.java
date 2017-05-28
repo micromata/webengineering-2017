@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class SunshineTest {
+public class PostServiceTest {
     @Test
     public void sunshine() {
         assertTrue(true);
