@@ -58,7 +58,7 @@ public class IntegrationTest {
         ResponseEntity<Map> response = rest.postForEntity(getPostURL(), entity, Map.class);
 
 
-        String url = (String) response.getBody().get("url");
+        String url = fixResponseURL((String) response.getBody().get("url"));
         Post storedPost = rest.getForObject(url, Post.class);
         assertEquals(title, storedPost.getTitle());
         assertEquals("kai", storedPost.getAuthor().getEmail());
@@ -67,5 +67,9 @@ public class IntegrationTest {
 
     private String getPostURL() {
         return "http://localhost:" + port + "/api/post";
+    }
+
+    private String fixResponseURL(String url) {
+        return url.replaceAll(":8080/", ":" + port + "/");
     }
 }
