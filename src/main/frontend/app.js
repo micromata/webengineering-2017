@@ -1,4 +1,11 @@
+var Greeter = React.createClass({
+    render: function () {
+        return <h1>Hello, {this.props.message}!</h1>
+    }
+});
+
+
 ReactDOM.render(
-    <h1>Hello World</h1>,
+    <Greeter message="Students"/>,
     document.getElementById('root'));
 
