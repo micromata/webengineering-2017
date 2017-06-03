@@ -7,5 +7,6 @@ var Greeter = React.createClass({
 
 ReactDOM.render(
     <Greeter message="Students"/>,
+    <Greeter message="Students"/>,
     document.getElementById('root'));
 
