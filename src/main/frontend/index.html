@@ -1,10 +1,23 @@
 <html>
-<head></head>
+<head>
+    <meta charset="utf-8">
+    <title>React Hello World</title>
+</head>
 <body>
-Hello, world!
+
+<!--This div-container will contain our React application.-->
+<div id='root'></div>
 
 <hr/>
-<script src="app.js"></script>
 
+<!--For playing around, we use a CDN to include all relevant libraries. This will be changed later to use our
+    own packaged and minified version of each library. -->
+<script src="https://fb.me/react-15.0.1.js"></script>
+<script src="https://fb.me/react-dom-15.0.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+<!--Since we use JSX this is not a simple JavaScript source file. Instead babel will transpile our JSX-based code into -->
+<!--Javascript which is understood in the browser.-->
+<script src="app.js" type="text/babel"></script>
 </body>
 </html>
