@@ -3,7 +3,13 @@
 .idea/
 target
 
+# H2 database files.
 *.mv.db
 *.trace.db
 
+# Tool downloads.
 tools
+
+# Generated webpack and npm files.
+src/main/frontend/node_modules
+src/main/frontend/bundle.*
