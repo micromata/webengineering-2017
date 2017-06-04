@@ -1,0 +1,24 @@
+{
+  "name": "webengineering-SS2017",
+  "version": "1.0.0",
+  "description": "Demo project for webengineering 2017",
+  "main": "index.js",
+  "repository": "https://github.com/micromata/webengineering-2017",
+  "scripts": {
+    "start": "node ./node_modules/.bin/webpack -w"
+  },
+  "author": "Michael Lesniak <mlesniak@micromata.de>",
+  "devDependencies": {
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0-beta.1",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "webpack": "2.4.1"
+  },
+  "dependencies": {
+    "react": "15.5.0",
+    "babel-preset-stage-1": "6.24.1"
+  }
+}
+
+
