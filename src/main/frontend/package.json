@@ -4,6 +4,7 @@
   "description": "Demo project for webengineering 2017",
   "main": "index.js",
   "repository": "https://github.com/micromata/webengineering-2017",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "node ./node_modules/.bin/webpack -w"
   },
