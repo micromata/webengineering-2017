@@ -10,6 +10,8 @@ target
 # Tool downloads.
 tools
 
-# Generated webpack and npm files.
+# Generated webpack, npm and resource files.
 src/main/frontend/node_modules
+src/main/frontend/node
 src/main/frontend/bundle.*
+src/main/resources/public
