@@ -1,16 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Greeter from "./components/greeter";
 
-class Greeter extends React.Component {
-    render() {
-        return <h1>Hello, {this.props.message}!</h1>
-    }
-}
 
 ReactDOM.render(
     <div>
         <Greeter message="Students"/>
         <Greeter message="Michael"/>
+        <Greeter />
     </div>,
     document.getElementById('root'));
 
