@@ -9,9 +9,9 @@ import Counter from "./counter";
 // }
 
 
-const Greeter = (props) => {
-    const message = !props.message ? 'unknown' : props.message;
-    return <h1>Hello (functional component), {message}! (<Counter />)</h1>
+const Greeter = ({message}) => {
+    const procMessage = !message ? 'unknown' : message;
+    return <h1>Hello, {procMessage}! (<Counter />)</h1>
 };
 
 export default Greeter;
