@@ -11,7 +11,7 @@ import Greeter from "./components/greeter";
 
 axios.get('http://www.mlesniak.com')
     .then(function (data) {
-        console.log(data);
+        console.log(data.data);
     });
 
 ReactDOM.render(
