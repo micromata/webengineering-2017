@@ -1,14 +1,20 @@
+import axios from "axios";
 import React from "react";
-import ReactDOM from "react-dom";
 
-import Greeter from "./components/greeter";
+// Retrieve list of posts and show them.
+axios.get('/api/post')
+    .then((data) => {
+        console.log(data);
+    });
 
 
-ReactDOM.render(
-    <div>
-        <Greeter message="Students"/>
-        <Greeter message="Michael"/>
-        <Greeter />
-    </div>,
-    document.getElementById('root'));
+// This annoys me while looking at the browser ;-)
+//
+// ReactDOM.render(
+//     <div>
+//         <Greeter message="Students"/>
+//         <Greeter message="Michael"/>
+//         <Greeter />
+//     </div>,
+//     document.getElementById('root'));
 
