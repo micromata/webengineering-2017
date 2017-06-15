@@ -14,12 +14,12 @@ axios.post('/api/post',
     });
 
 // Retrieve list of posts and show them.
-// axios.get('/api/post')
-//     .then(({data}) => {
-//         for (var post of data) {
-//             console.log(post);
-//         }
-//     });
+axios.get('/api/post')
+    .then(({data}) => {
+        for (var post of data) {
+            console.log(post);
+        }
+    });
 
 
 // This annoys me while looking at the browser ;-)
