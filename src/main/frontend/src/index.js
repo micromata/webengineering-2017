@@ -10,8 +10,8 @@ import Greeter from "./components/greeter";
 // axios works.
 
 axios.get('http://www.mlesniak.com')
-    .then((data) =>
-        console.log(data.data)
+    .then(({data}) =>
+        console.log(data)
     );
 
 ReactDOM.render(
