@@ -11,7 +11,10 @@ import Counter from "./counter";
 
 const Greeter = ({message}) => {
     const procMessage = !message ? 'unknown' : message;
-    return <h1>Hello, {procMessage}! (<Counter />)</h1>
+    return (
+        <Counter>
+            <h1>Hello, {procMessage}!</h1>
+        </Counter>);
 };
 
 export default Greeter;

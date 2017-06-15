@@ -16,7 +16,11 @@ class Counter extends React.Component {
     }
 
     render() {
-        return <span onClick={this.onClick.bind(this)}>{this.state.counter}</span>
+        return (
+            <div onClick={this.onClick.bind(this)}>
+                {this.props.children}
+                ({this.state.counter})
+            </div>)
     }
 }
 
