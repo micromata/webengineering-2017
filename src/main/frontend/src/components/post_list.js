@@ -20,12 +20,24 @@ class PostList extends React.Component {
         });
     }
 
+    renderPosts() {
+        return this.state.posts.map((post => {
+            return (
+                <li>
+                    {post.title}
+                </li>
+            );
+        }));
+    }
+
 
     render() {
         return (
             <div>
                 <h1>Posts</h1>
-                {this.state.posts}
+                <ul>
+                    {this.renderPosts()}
+                </ul>
             </div>
         );
     }
