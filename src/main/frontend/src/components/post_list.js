@@ -14,7 +14,8 @@ class PostList extends React.Component {
         this.setState({
             posts: [
                 {
-                    title: 'test -- loading will be implemented later'
+                    title: 'test -- loading will be implemented later',
+                    id: 1
                 }
             ]
         });
@@ -23,7 +24,7 @@ class PostList extends React.Component {
     renderPosts() {
         return this.state.posts.map((post => {
             return (
-                <li>
+                <li key={post.id}>
                     {post.title}
                 </li>
             );
