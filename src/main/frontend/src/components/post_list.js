@@ -1,5 +1,5 @@
+import axios from "axios";
 import React from "react";
-
 
 class PostList extends React.Component {
     constructor(props) {
@@ -11,14 +11,12 @@ class PostList extends React.Component {
 
     // This function is called before render() to initialize its state.
     componentWillMount() {
-        this.setState({
-            posts: [
-                {
-                    title: 'test -- loading will be implemented later',
-                    id: 1
-                }
-            ]
-        });
+        axios.get('/api/post')
+            .then(({data}) => {
+                this.setState({
+                    posts: data
+                })
+            });
     }
 
     renderPosts() {
