@@ -15,7 +15,7 @@ class PostCreate extends React.Component {
 
 
     handleTitleChange(event) {
-        this.setState({title: event.target.value}, () => console.log(this.state.title));
+        this.setState({title: event.target.value});
     }
 
     handleSubmit(event) {
