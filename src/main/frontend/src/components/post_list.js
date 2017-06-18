@@ -23,7 +23,7 @@ class PostList extends React.Component {
         return this.state.posts.map((post => {
             return (
                 <li key={post.id}>
-                    {post.title}
+                    {post.id} {post.title}
                 </li>
             );
         }));
