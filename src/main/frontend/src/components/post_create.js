@@ -19,6 +19,7 @@ class PostCreate extends React.Component {
         //
         // (This comment will be deleted in some of the future commits.)
         this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
@@ -32,11 +33,16 @@ class PostCreate extends React.Component {
         this.setState({title: event.target.value}, () => console.log(this.state.title));
     }
 
+    handleSubmit(event) {
+        alert('A title was submitted: ' + this.state.title);
+        event.preventDefault();
+    }
+
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>
                         title
                         <input type="text" name="title" value={this.state.value} onChange={this.handleTitleChange}/>
