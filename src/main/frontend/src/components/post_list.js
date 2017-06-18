@@ -19,11 +19,15 @@ class PostList extends React.Component {
             });
     }
 
+    deletePost(id) {
+        console.log("Deleting post " + id);
+    }
+
     renderPosts() {
         return this.state.posts.map((post => {
             return (
                 <li key={post.id}>
-                    {post.id} {post.title}
+                    {post.id} {post.title} <span onClick={this.deletePost(post.id)}>DELETE</span>
                 </li>
             );
         }));
