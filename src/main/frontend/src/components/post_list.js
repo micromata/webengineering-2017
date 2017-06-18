@@ -27,7 +27,7 @@ class PostList extends React.Component {
         return this.state.posts.map((post => {
             return (
                 <li key={post.id}>
-                    {post.id} {post.title} <span onClick={this.deletePost(post.id)}>DELETE</span>
+                    {post.id} {post.title} <span onClick={() => this.deletePost(post.id)}>DELETE</span>
                 </li>
             );
         }));
