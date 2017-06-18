@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
+import PostCreate from "./components/post_create";
 
 import PostList from "./components/post_list";
 
@@ -28,6 +29,8 @@ axios.defaults.headers.common['Authorization'] = 'Bearer eyJhbGciOiJIUzUxMiJ9.ey
 ReactDOM.render(
     <div>
         <PostList />
+        <hr/>
+        <PostCreate/>
     </div>,
     document.getElementById('root'));
 
