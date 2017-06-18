@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
@@ -18,8 +19,11 @@ class PostCreate extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A title was submitted: ' + this.state.title);
         event.preventDefault();
+        axios.post('/api/post',
+            {
+                title: this.state.title
+            });
     }
 
 
