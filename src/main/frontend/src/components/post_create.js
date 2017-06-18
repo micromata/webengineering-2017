@@ -5,7 +5,13 @@ class PostCreate extends React.Component {
     render() {
         return (
             <div>
-                TEMPLATE
+                <form>
+                    <label>
+                        title
+                        <input type="text" name="title"/>
+                    </label>
+                    <input type="submit" value="Submit"/>
+                </form>
             </div>
         );
     }
