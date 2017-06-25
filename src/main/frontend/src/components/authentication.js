@@ -9,7 +9,8 @@ class Authentication extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            error: undefined
         };
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -87,6 +88,9 @@ class Authentication extends React.Component {
                     <input type="submit" value="Submit"/>
                 </form>
                 <span onClick={this.handleLogout}>Logout</span>
+                <div className="error">
+                    Login was not successful.
+                </div>
             </div>
         );
     }

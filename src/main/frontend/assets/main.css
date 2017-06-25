@@ -9,3 +9,7 @@
     margin: 5px;
     font-size: 20px;
 }
+
+.component .error {
+    color: red;
+}
