@@ -15,6 +15,7 @@ class Authentication extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentWillMount() {
@@ -65,6 +66,16 @@ class Authentication extends React.Component {
             });
     }
 
+    handleLogout() {
+        const {cookies} = this.props;
+
+        axios.defaults.headers.common['Authorization'] = undefined;
+        User.email = undefined;
+        User.id = -1;
+        cookies.remove('auth');
+        this.forceUpdate();
+    }
+
 
     render() {
         return (
@@ -84,6 +95,7 @@ class Authentication extends React.Component {
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
+                <span onClick={this.handleLogout}>Logout</span>
             </div>
         );
     }
