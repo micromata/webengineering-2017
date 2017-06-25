@@ -23,9 +23,13 @@ class Authentication extends React.Component {
 
         const auth = cookies.get('auth');
         if (auth) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${auth.token}`;
-            User.set(auth.user);
+            this.setCredentials(auth);
         }
+    }
+
+    setCredentials(credentials) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${credentials.token}`;
+        User.set(credentials.user);
     }
 
     handleEmailChange(event) {
@@ -50,8 +54,7 @@ class Authentication extends React.Component {
         event.preventDefault();
         axios.post('/user/login', this.state)
             .then(({data}) => {
-                axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-                User.set(data.user);
+                this.setCredentials(data);
 
                 // Store authentication values even after refresh.
                 cookies.set('auth', {
