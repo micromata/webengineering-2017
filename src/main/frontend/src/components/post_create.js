@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 
 import {translate} from "react-i18next";
-import i18n from "../i18n";
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 class PostCreate extends React.Component {
@@ -14,9 +13,6 @@ class PostCreate extends React.Component {
 
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
-        // Show how to use manual language switching.
-        i18n.changeLanguage("en");
     }
 
 
