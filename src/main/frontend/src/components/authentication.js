@@ -51,19 +51,28 @@ class Authentication extends React.Component {
                 return (status >= 200 && status < 300) || status == 401
             }
         })
-            .then(({data}) => {
-                this.setCredentials(data);
+            .then(({data, status}) => {
+                switch (status) {
+                    case 200:
+                        this.setCredentials(data);
+                        this.setState({error: undefined});
 
-                // Store authentication values even after refresh.
-                this.cookies.set('auth', {
-                    token: data.token,
-                    user: User
-                }, {path: '/'});
+                        // Store authentication values even after refresh.
+                        this.cookies.set('auth', {
+                            token: data.token,
+                            user: User
+                        }, {path: '/'});
 
-                // Since we do not have the User as part of the component's state,
-                // calling this.SetState() makes no sense. Instead we have to manually
-                // force the component to update.
-                this.forceUpdate();
+                        // Since we do not have the User as part of the component's state,
+                        // calling this.SetState() makes no sense. Instead we have to manually
+                        // force the component to update.
+                        this.forceUpdate();
+                        break;
+
+                    case 401:
+                        this.setState({error: true});
+                        break;
+                }
             });
     }
 
