@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import {Link} from "react-router-dom";
 
 class PostList extends React.Component {
     constructor(props) {
@@ -37,10 +38,12 @@ class PostList extends React.Component {
     renderPosts() {
         return this.state.posts.map((post => {
             return (
-                <li key={post.id}>
-                    {post.id} {post.title} {post.author.email} <span
-                    onClick={() => this.deletePost(post.id)}>DELETE</span>
-                </li>
+                <Link to={`/post/${post.id}`}>
+                    <li key={post.id}>
+                        {post.id} {post.title} {post.author.email} <span
+                        onClick={() => this.deletePost(post.id)}>DELETE</span>
+                    </li>
+                </Link>
             );
         }));
     }
