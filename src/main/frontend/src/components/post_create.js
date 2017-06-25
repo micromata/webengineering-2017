@@ -30,6 +30,7 @@ class PostCreate extends React.Component {
     render() {
         return (
             <div className="component">
+                <h1>Post create</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         title
