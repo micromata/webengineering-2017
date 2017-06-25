@@ -33,7 +33,7 @@ class PostCreate extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         title
-                        <input type="text" name="title" value={this.state.value} onChange={this.handleTitleChange}/>
+                        <input type="text" name="title" value={this.state.title} onChange={this.handleTitleChange}/>
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
