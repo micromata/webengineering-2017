@@ -35,13 +35,21 @@ class Authentication extends React.Component {
                 User.email = data.user.email;
                 User.id = data.user.id;
                 console.log(User);
+
+                // Since we do not have the User as part of the component's state,
+                // calling this.SetState() makes no sense. Instead we have to manually
+                // force the component to update.
+                this.forceUpdate();
             });
     }
+
 
     render() {
         return (
             <div className="component">
                 <h1>Authentication</h1>
+                Current user {User.email} {User.id}
+                <p/>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Email
