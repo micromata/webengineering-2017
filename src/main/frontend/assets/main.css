@@ -13,3 +13,15 @@
 .component .error {
     color: red;
 }
+
+.menu {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.menu a {
+    margin: 5px;
+    text-decoration: none;
+    color: blue;
+}
