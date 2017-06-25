@@ -23,7 +23,14 @@ class PostList extends React.Component {
     deletePost(id) {
         // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
         // No error handling for now, e.g. if the user is not authenticated.
-        axios.delete(`/api/post/${id}`);
+        axios.delete(`/api/post/${id}`)
+            .then((data) => {
+                // Remove post from list of posts.
+                const posts = this.state.posts.filter(e => e.id != id);
+                this.setState({
+                    posts: posts
+                })
+            });
     }
 
 
