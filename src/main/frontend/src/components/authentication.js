@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import User from "../util/User";
 
 class Authentication extends React.Component {
     constructor(props) {
@@ -30,8 +31,10 @@ class Authentication extends React.Component {
         axios.post('/user/login', this.state)
             .then(({data}) => {
                 console.log(data);
-                // TODO ML Store user globally.
                 axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+                User.email = data.user.email;
+                User.id = data.user.id;
+                console.log(User);
             });
     }
 
