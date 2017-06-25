@@ -22,9 +22,11 @@ class Authentication extends React.Component {
         const {cookies} = this.props;
 
         const auth = cookies.get('auth');
-        axios.defaults.headers.common['Authorization'] = `Bearer ${auth.token}`;
-        User.email = auth.user.email;
-        User.id = auth.user.id;
+        if (auth) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${auth.token}`;
+            User.email = auth.user.email;
+            User.id = auth.user.id;
+        }
     }
 
     handleEmailChange(event) {
