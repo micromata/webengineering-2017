@@ -6,7 +6,7 @@ class PostCreate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: 'default title'
+            title: ''
         };
 
         this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -23,6 +23,10 @@ class PostCreate extends React.Component {
         axios.post('/api/post',
             {
                 title: this.state.title
+            })
+            .then((data) => {
+                // Redirect to front page.
+                this.props.history.push("/");
             });
     }
 
