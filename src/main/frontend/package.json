@@ -21,9 +21,11 @@
     "axios": "^0.16.2",
     "babel-preset-stage-1": "6.24.1",
     "i18next": "^8.4.2",
+    "i18next-xhr-backend": "^1.4.2",
     "react": "15.5.4",
     "react-cookie": "^2.0.7",
     "react-dom": "^15.5.4",
+    "react-i18next": "^4.1.2",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "universal-cookie": "^2.0.8"
