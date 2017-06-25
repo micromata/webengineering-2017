@@ -12,6 +12,14 @@ class User {
         this.email = undefined;
         this.id = -1;
     }
+
+    isAuthenticated() {
+        return this.email && this.id != -1;
+    }
+
+    isNotAuthenticated() {
+        return !this.isAuthenticated();
+    }
 }
 
 // Singleton pattern in ES6.

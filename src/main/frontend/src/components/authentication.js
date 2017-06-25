@@ -89,7 +89,9 @@ class Authentication extends React.Component {
             <div className="component">
                 <h1>Authentication</h1>
                 Current user: {User.email || 'not logged in'}
+
                 <p/>
+                { User.isNotAuthenticated() &&
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Email
@@ -102,7 +104,12 @@ class Authentication extends React.Component {
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
+                }
+                { User.isAuthenticated() &&
                 <span onClick={this.handleLogout}>Logout</span>
+                }
+
+                <p/>
                 {/*See https://facebook.github.io/react/docs/conditional-rendering.html* for different approaches */}
                 { this.state.error &&
                 <div className="error">
