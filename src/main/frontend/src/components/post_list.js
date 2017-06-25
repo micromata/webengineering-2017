@@ -38,8 +38,8 @@ class PostList extends React.Component {
     renderPosts() {
         return this.state.posts.map((post => {
             return (
-                <Link to={`/post/${post.id}`}>
-                    <li key={post.id}>
+                <Link to={`/post/${post.id}`} key={post.id}>
+                    <li>
                         {post.id} {post.title} {post.author.email} <span
                         onClick={() => this.deletePost(post.id)}>DELETE</span>
                     </li>
