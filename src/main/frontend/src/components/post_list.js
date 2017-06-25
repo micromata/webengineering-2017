@@ -40,7 +40,7 @@ class PostList extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="component">
                 <h1>Posts</h1>
                 <ul>
                     {this.renderPosts()}
