@@ -5,8 +5,12 @@ class PostDetail extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            post: undefined
+            post: undefined,
+            comment: ''
         }
+
+        this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
+        this.handleCommentChange = this.handleCommentChange.bind(this);
     }
 
     componentWillMount() {
@@ -18,6 +22,24 @@ class PostDetail extends React.Component {
             });
     }
 
+    handleCommentChange(event) {
+        this.setState({comment: event.target.value});
+    }
+
+    handleCommentSubmit(event) {
+        event.preventDefault();
+        axios.post(`/api/post/${this.props.match.params.id}/comment`,
+            {
+                text: this.state.comment
+            })
+            .then((data) => {
+                // Update state to show comment by retrieving state from server.
+                // Alternatively we could also simply add the comment to our state to prevent a
+                // call to the backend.
+                this.setState({comment: ''});
+                this.componentWillMount();
+            });
+    }
 
     renderComments(post) {
         return post.comments.map((comment => {
@@ -46,6 +68,14 @@ class PostDetail extends React.Component {
                 <div>Author {post.author.email}</div>
                 <div>Created at {new Date(post.createdAt).toISOString()}</div>
                 {this.renderComments(post)}
+                <hr/>
+                <form onSubmit={this.handleCommentSubmit}>
+                    <label>
+                        Comment
+                        <textarea name="comment" value={this.state.comment} onChange={this.handleCommentChange}/>
+                    </label>
+                    <input type="submit" value="Submit"/>
+                </form>
             </div>
         );
     }
