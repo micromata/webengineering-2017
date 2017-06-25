@@ -88,9 +88,12 @@ class Authentication extends React.Component {
                     <input type="submit" value="Submit"/>
                 </form>
                 <span onClick={this.handleLogout}>Logout</span>
+                {/*See https://facebook.github.io/react/docs/conditional-rendering.html* for different approaches */}
+                { this.state.error &&
                 <div className="error">
                     Login was not successful.
                 </div>
+                }
             </div>
         );
     }
