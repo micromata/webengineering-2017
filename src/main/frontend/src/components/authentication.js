@@ -44,7 +44,13 @@ class Authentication extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('/user/login', this.state)
+        axios.post('/user/login', this.state, {
+            // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
+            // check the HTTP status code.
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 401
+            }
+        })
             .then(({data}) => {
                 this.setCredentials(data);
 
