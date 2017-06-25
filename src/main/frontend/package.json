@@ -22,6 +22,8 @@
     "babel-preset-stage-1": "6.24.1",
     "react": "15.5.4",
     "react-cookie": "^2.0.7",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1"
   }
 }
