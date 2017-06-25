@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 
 class Authentication extends React.Component {
@@ -26,7 +27,10 @@ class Authentication extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state);
+        axios.post('/user/login', this.state)
+            .then(({data}) => {
+                console.log(data);
+            });
     }
 
     render() {
