@@ -6,6 +6,7 @@ import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 
 import Authentication from "./components/authentication";
 import PostCreate from "./components/post_create";
+import PostDetail from "./components/post_detail";
 import PostList from "./components/post_list";
 
 import User from "./util/User";
@@ -28,6 +29,7 @@ ReactDOM.render(
 
                     {/*Post handling*/}
                     <Route path="/post/new" component={PostCreate}/>
+                    <Route path="/post/:id" component={PostDetail}/>
 
                     {/*Default route*/}
                     <Route path="/" component={PostList}/>
