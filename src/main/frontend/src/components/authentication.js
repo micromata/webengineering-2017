@@ -24,8 +24,7 @@ class Authentication extends React.Component {
         const auth = cookies.get('auth');
         if (auth) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${auth.token}`;
-            User.email = auth.user.email;
-            User.id = auth.user.id;
+            User.set(auth.user);
         }
     }
 
@@ -52,8 +51,7 @@ class Authentication extends React.Component {
         axios.post('/user/login', this.state)
             .then(({data}) => {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-                User.email = data.user.email;
-                User.id = data.user.id;
+                User.set(data.user);
 
                 // Store authentication values even after refresh.
                 cookies.set('auth', {
@@ -72,8 +70,7 @@ class Authentication extends React.Component {
         const {cookies} = this.props;
 
         axios.defaults.headers.common['Authorization'] = undefined;
-        User.email = undefined;
-        User.id = -1;
+        User.reset();
         cookies.remove('auth');
         this.forceUpdate();
     }
