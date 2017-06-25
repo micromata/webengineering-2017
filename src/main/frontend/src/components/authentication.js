@@ -30,6 +30,8 @@ class Authentication extends React.Component {
         axios.post('/user/login', this.state)
             .then(({data}) => {
                 console.log(data);
+                // TODO ML Store user globally.
+                axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
             });
     }
 
