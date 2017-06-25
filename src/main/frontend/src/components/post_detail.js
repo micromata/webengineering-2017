@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 
+import User from "../util/User";
+
 class PostDetail extends React.Component {
     constructor(props) {
         super();
@@ -69,6 +71,7 @@ class PostDetail extends React.Component {
                 <div>Created at {new Date(post.createdAt).toISOString()}</div>
                 {this.renderComments(post)}
                 <hr/>
+                { User.isAuthenticated() &&
                 <form onSubmit={this.handleCommentSubmit}>
                     <label>
                         Comment
@@ -76,6 +79,7 @@ class PostDetail extends React.Component {
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
+                }
             </div>
         );
     }
