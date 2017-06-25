@@ -8,6 +8,10 @@ import Authentication from "./components/authentication";
 import PostCreate from "./components/post_create";
 import PostList from "./components/post_list";
 
+import User from "./util/User";
+
+// Force initialization of the object.
+User.isAuthenticated();
 
 ReactDOM.render(
     <CookiesProvider>
