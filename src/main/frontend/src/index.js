@@ -19,8 +19,8 @@ ReactDOM.render(
         <Router>
             <div>
                 <div className="menu">
-                    <Link to="/post/new">Create post</Link>
                     <Link to="/">Post list</Link>
+                    <Link to="/post/new">Create post</Link>
                     <Link to="/user/login">Login</Link>
                 </div>
                 <Switch>
