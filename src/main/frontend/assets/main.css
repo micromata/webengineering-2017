@@ -1,6 +1,7 @@
 .component {
     border: 1px solid lightgray;
     margin: 10px;
+    padding: 5px;
 }
 
 .component h1 {
@@ -15,7 +16,7 @@
 }
 
 .menu {
-    margin: 5px;
+    margin: 10px;
     padding: 5px;
     border: 1px solid black;
 }
