@@ -46,7 +46,7 @@ class Authentication extends React.Component {
         return (
             <div className="component">
                 <h1>Authentication</h1>
-                Current user: {!User.email ? 'not logged in' : User.email}
+                Current user: {User.email || 'not logged in'}
                 <p/>
                 <form onSubmit={this.handleSubmit}>
                     <label>
