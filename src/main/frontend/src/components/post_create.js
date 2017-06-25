@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 
+import {translate} from "react-i18next";
+
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 class PostCreate extends React.Component {
     constructor(props) {
@@ -32,6 +34,8 @@ class PostCreate extends React.Component {
 
 
     render() {
+        const {t} = this.props;
+
         return (
             <div className="component">
                 <h1>Post create</h1>
@@ -42,9 +46,12 @@ class PostCreate extends React.Component {
                     </label>
                     <input type="submit" value="Submit"/>
                 </form>
+
+                <hr/>
+                Name: {t('applicationName')}
             </div>
         );
     }
 }
 
-export default PostCreate;
+export default translate()(PostCreate);
