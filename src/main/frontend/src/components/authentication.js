@@ -16,12 +16,11 @@ class Authentication extends React.Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        this.cookies = this.props.cookies;
     }
 
     componentWillMount() {
-        const {cookies} = this.props;
-
-        const auth = cookies.get('auth');
+        const auth = this.cookies.get('auth');
         if (auth) {
             this.setCredentials(auth);
         }
@@ -43,21 +42,13 @@ class Authentication extends React.Component {
 
 
     handleSubmit(event) {
-        // Syntactic ES6 sugar for
-        //
-        //   cookies.get = this.props.get
-        //   cookies.set = this.props.set
-        //   ..
-        //
-        const {cookies} = this.props;
-
         event.preventDefault();
         axios.post('/user/login', this.state)
             .then(({data}) => {
                 this.setCredentials(data);
 
                 // Store authentication values even after refresh.
-                cookies.set('auth', {
+                this.cookies.set('auth', {
                     token: data.token,
                     user: User
                 }, {path: '/'});
@@ -70,11 +61,9 @@ class Authentication extends React.Component {
     }
 
     handleLogout() {
-        const {cookies} = this.props;
-
         axios.defaults.headers.common['Authorization'] = undefined;
         User.reset();
-        cookies.remove('auth');
+        this.cookies.remove('auth');
         this.forceUpdate();
     }
 
