@@ -3,6 +3,8 @@
     <meta charset="utf-8">
     <title>Demo application</title>
     <link rel="stylesheet" type="text/css" href="assets/main.css">
+    <!--Use a CDN for bootstrap (for now), see https://de.wikipedia.org/wiki/Content_Delivery_Network -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -10,8 +12,8 @@
 <!--This div-container will contain our React application.-->
 <div id='root'></div>
 
-<!--Since we use JSX this is not a simple JavaScript source file. Instead babel will transpile our JSX-based code into -->
-<!--Javascript which is understood in the browser.-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="bundle.js"></script>
 </body>
 </html>
