@@ -20,11 +20,26 @@ ReactDOM.render(
         <I18nextProvider i18n={i18n}>
             <Router>
                 <div>
-                    <div className="menu">
-                        <Link to="/">Post list</Link>
-                        <Link to="/post/new">Create post</Link>
-                        <Link to="/user/login">Login</Link>
-                    </div>
+                    <nav className="navbar navbar-inverse navbar-fixed-top">
+                        <div className="container">
+                            <div className="navbar-header">
+                                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
+                                        data-target="#navbar">
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                    <span className="icon-bar"></span>
+                                </button>
+                                <Link to="/" className="navbar-brand">Demo</Link>
+                            </div>
+                            <div id="navbar" className="collapse navbar-collapse">
+                                <ul className="nav navbar-nav">
+                                    <li><Link to="/">Post list</Link></li>
+                                    <li><Link to="/post/new">Create post</Link></li>
+                                    <li><Link to="/user/login">Login</Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                     <Switch>
                         {/*Authentication*/}
                         <Route path="/user/login" component={Authentication}/>
