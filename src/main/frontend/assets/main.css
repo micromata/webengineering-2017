@@ -4,16 +4,16 @@ body {
 }
 
 .component {
-    border: 1px solid lightgray;
-    margin: 10px;
-    padding: 5px;
+    /*border: 1px solid lightgray;*/
+    /*margin: 10px;*/
+    /*padding: 5px;*/
 }
 
 .component h1 {
-    text-align: right;
-    color: lightgray;
-    margin: 5px;
-    font-size: 20px;
+    /*text-align: right;*/
+    /*color: lightgray;*/
+    /*margin: 5px;*/
+    /*font-size: 20px;*/
 }
 
 .component a {

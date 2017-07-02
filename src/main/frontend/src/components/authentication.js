@@ -75,9 +75,9 @@ class Authentication extends React.Component {
 
 
     render() {
-        let component = null;
+        let loginComponent = null;
         if (User.isNotAuthenticated()) {
-            component =
+            loginComponent =
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Email
@@ -91,17 +91,15 @@ class Authentication extends React.Component {
                     <input type="submit" value="Submit"/>
                 </form>
         } else {
-            component =
-                <span onClick={this.handleLogout}>Logout</span>
+            loginComponent =
+                <div>
+                    <button type="button" className="btn btn-danger" onClick={this.handleLogout}>Logout</button>
+                </div>
         }
 
         return (
             <div className="component">
-                <h1>Authentication</h1>
-                Current user: {User.email || 'not logged in'}
-
-                <p/>
-                {component}
+                {loginComponent}
 
                 <p/>
                 { this.state.error &&
