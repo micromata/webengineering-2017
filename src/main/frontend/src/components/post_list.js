@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import User from "../util/User";
 
 class PostList extends React.Component {
     constructor(props) {
@@ -41,8 +42,13 @@ class PostList extends React.Component {
 
     renderPosts() {
         return this.state.posts.map((post => {
+            let isAuthor = false;
+            if (User.isAuthenticated && User.id == post.author.id) {
+                isAuthor = true;
+            }
+
             return (
-                <tr key={post.id} onClick={() => this.handleClick(post.id)}>
+                <tr key={post.id} onClick={() => this.handleClick(post.id)} className={isAuthor ? 'success' : ''}>
                     <td>{post.createdAt}</td>
                     <td>{post.title} </td>
                     <td>{post.author.email}</td>
