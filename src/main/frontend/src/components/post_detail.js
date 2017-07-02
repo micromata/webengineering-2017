@@ -64,11 +64,14 @@ class PostDetail extends React.Component {
         }
 
         return (
-            <div className="component">
-                <h1>Post Detail</h1>
-                <div>Title {post.title}</div>
-                <div>Author {post.author.email}</div>
-                <div>Created at {new Date(post.createdAt).toISOString()}</div>
+            <div>
+                {/*A row in a bootstrap context must be stored in a container*/}
+                <div className="container-fluid post-detail">
+                    <span className="col-sm-8 post-title">{post.title}</span>
+                    <span>{post.author.email}</span>
+                    <span>{new Date(post.createdAt).toDateString()}</span>
+                </div>
+
                 {this.renderComments(post)}
                 <hr/>
                 { User.isAuthenticated() &&

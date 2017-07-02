@@ -25,14 +25,10 @@ body {
     color: red;
 }
 
-.menu {
-    margin: 10px;
-    padding: 5px;
-    border: 1px solid lightgray;
+.post-detail span {
+    padding-right: 10px;
 }
 
-.menu a {
-    margin: 5px;
-    text-decoration: none;
-    color: gray;
+.post-detail .post-title {
+    font-weight: bold;
 }
