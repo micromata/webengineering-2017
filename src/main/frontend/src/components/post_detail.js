@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import {Button, Modal} from "react-bootstrap";
 
 import User from "../util/User";
 
@@ -8,11 +9,13 @@ class PostDetail extends React.Component {
         super();
         this.state = {
             post: undefined,
-            comment: ''
+            comment: '',
+            askDelete: false
         }
 
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
         this.handleCommentChange = this.handleCommentChange.bind(this);
+        this.askDelete = this.askDelete.bind(this);
     }
 
     componentWillMount() {
@@ -55,6 +58,10 @@ class PostDetail extends React.Component {
             });
     }
 
+    askDelete() {
+        this.setState({askDelete: true});
+    }
+
     renderComments(post) {
         return post.comments.map((comment => {
             return (
@@ -76,36 +83,38 @@ class PostDetail extends React.Component {
 
         return (
             <div>
-                {/*A row in a bootstrap context must be stored in a container*/}
-                <div className="container-fluid post-detail">
-                    <div>
-                        <span className="post-title">{post.title}</span>
-                        <div className="pull-right delete-button">
-                            { User.isAuthenticated() && User.id === post.author.id &&
-                            <button
-                                onClick={() => this.deletePost(post.id)}
-                                className="btn btn-danger">Delete</button>
-                            }
+
+                <div>
+                    {/*A row in a bootstrap context must be stored in a container*/}
+                    <div className="container-fluid post-detail">
+                        <div>
+                            <span className="post-title">{post.title}</span>
+                            <div className="pull-right delete-button">
+                                { User.isAuthenticated() && User.id === post.author.id &&
+                                <button
+                                    onClick={() => this.askDelete()}
+                                    className="btn btn-danger">Delete</button>
+                                }
+                            </div>
                         </div>
+                        <div className="post-subtitle">
+                            <span>{post.author.email}</span>
+                            <span>@</span>
+                            <span>{new Date(post.createdAt).toDateString()}</span>
+                        </div>
+
                     </div>
-                    <div className="post-subtitle">
-                        <span>{post.author.email}</span>
-                        <span>@</span>
-                        <span>{new Date(post.createdAt).toDateString()}</span>
-                    </div>
 
-                </div>
+                    <table className="table table-striped">
+                        <tbody>
+                        {this.renderComments(post)}
+                        </tbody>
+                    </table>
+                    <hr/>
 
-                <table className="table table-striped">
-                    <tbody>
-                    {this.renderComments(post)}
-                    </tbody>
-                </table>
-                <hr/>
-
-                { User.isAuthenticated() &&
-                <form onSubmit={this.handleCommentSubmit}>
-                    <div className="form-group">
+                    { User.isAuthenticated() &&
+                    <form onSubmit={this.handleCommentSubmit}>
+                        <div className="form-group">
                         <textarea
                             autoFocus={true}
                             placeholder="Your comment..."
@@ -113,10 +122,33 @@ class PostDetail extends React.Component {
                             name="comment"
                             value={this.state.comment}
                             onChange={this.handleCommentChange}/>
-                    </div>
-                    <input type="submit" value="Submit" className="btn btn-success"/>
-                </form>
-                }
+                        </div>
+                        <input type="submit" value="Submit" className="btn btn-success"/>
+                    </form>
+                    }
+
+                    { this.state.askDelete &&
+                    <Modal.Dialog>
+                        <Modal.Header>
+                            <Modal.Title>Are you sure?</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            Do you want to delete your post?
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button onClick={() => {
+                                this.setState({askDelete: false})
+                            }
+                            }>Cancel</Button>
+                            <Button
+                                onClick={() => {
+                                    this.deletePost(this.state.post.id)
+                                }}
+                                bsStyle="primary">Delete</Button>
+                        </Modal.Footer>
+                    </Modal.Dialog>
+                    }
+                </div>
             </div>
         );
     }

@@ -42,6 +42,10 @@ body {
     color: gray;
 }
 
+.post-detail .delete-button {
+
+}
+
 .post-comment {
     margin-top: 20px;
 }
