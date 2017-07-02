@@ -47,9 +47,11 @@ class PostList extends React.Component {
                 isAuthor = true;
             }
 
+            let date = new Date(post.createdAt).toDateString();
+
             return (
                 <tr key={post.id} onClick={() => this.handleClick(post.id)} className={isAuthor ? 'success' : ''}>
-                    <td>{post.createdAt}</td>
+                    <td>{date}</td>
                     <td>{post.title} </td>
                     <td>{post.author.email}</td>
                 </tr>
