@@ -51,6 +51,9 @@ class Authentication extends React.Component {
                             user: User
                         }, {path: '/'});
 
+                        // Send event of updated login state.
+                        this.props.updateAuthentication();
+
                         // Redirect to front page.
                         this.props.history.push("/");
                         break;
@@ -67,6 +70,7 @@ class Authentication extends React.Component {
         User.reset();
         this.cookies.remove('auth');
         this.forceUpdate();
+        this.props.updateAuthentication();
     }
 
 

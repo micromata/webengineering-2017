@@ -3,6 +3,12 @@ import {Link} from "react-router-dom";
 import User from "../util/User";
 
 class Navigation extends React.Component {
+    updateAuthentication() {
+        // If we would store the authentication state in the component's state and reset the state,
+        // we would not have to do this.
+        this.forceUpdate();
+    }
+
     render() {
         return (
             <nav className="navbar navbar-inverse navbar-fixed-top">
