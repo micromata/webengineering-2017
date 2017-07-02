@@ -69,6 +69,7 @@ class PostDetail extends React.Component {
                     <span className="post-title">{post.title}</span>
                     <div className="post-subtitle">
                         <span>{post.author.email}</span>
+                        <span>@</span>
                         <span>{new Date(post.createdAt).toDateString()}</span>
                     </div>
                 </div>
