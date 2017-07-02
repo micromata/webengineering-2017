@@ -116,7 +116,7 @@ class Authentication extends React.Component {
 
                 <p/>
                 { this.state.error &&
-                <div className="error">
+                <div className="alert alert-danger">
                     Login was not successful.
                 </div>
                 }
