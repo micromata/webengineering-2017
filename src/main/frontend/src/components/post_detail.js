@@ -82,11 +82,16 @@ class PostDetail extends React.Component {
 
                 { User.isAuthenticated() &&
                 <form onSubmit={this.handleCommentSubmit}>
-                    <label>
-                        Comment
-                        <textarea name="comment" value={this.state.comment} onChange={this.handleCommentChange}/>
-                    </label>
-                    <input type="submit" value="Submit"/>
+                    <div className="form-group">
+                        <textarea
+                            autoFocus={true}
+                            placeholder="Your comment..."
+                            className="form-control"
+                            name="comment"
+                            value={this.state.comment}
+                            onChange={this.handleCommentChange}/>
+                    </div>
+                    <input type="submit" value="Submit" className="btn btn-success"/>
                 </form>
                 }
             </div>
