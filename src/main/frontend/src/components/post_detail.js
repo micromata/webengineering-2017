@@ -30,6 +30,11 @@ class PostDetail extends React.Component {
 
     handleCommentSubmit(event) {
         event.preventDefault();
+
+        if (this.state.comment.trim() === "") {
+            return;
+        }
+
         axios.post(`/api/post/${this.props.match.params.id}/comment`,
             {
                 text: this.state.comment
