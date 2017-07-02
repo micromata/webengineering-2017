@@ -46,12 +46,11 @@ class PostDetail extends React.Component {
     renderComments(post) {
         return post.comments.map((comment => {
             return (
-                <div key={comment.id}>
-                    <hr/>
-                    <div>Author {comment.author.email}</div>
-                    <div>Created at {new Date(comment.createdAt).toISOString()}</div>
-                    {comment.text}
-                </div>
+                <tr key={comment.id}>
+                    <td className="col-sm-1">{new Date(comment.createdAt).toDateString()}</td>
+                    <td className="col-sm-1">{comment.author.email}</td>
+                    <td className="col-sm-10">{comment.text}</td>
+                </tr>
             );
         }));
     }
@@ -67,13 +66,20 @@ class PostDetail extends React.Component {
             <div>
                 {/*A row in a bootstrap context must be stored in a container*/}
                 <div className="container-fluid post-detail">
-                    <span className="col-sm-8 post-title">{post.title}</span>
-                    <span>{post.author.email}</span>
-                    <span>{new Date(post.createdAt).toDateString()}</span>
+                    <span className="post-title">{post.title}</span>
+                    <div className="post-subtitle">
+                        <span>{post.author.email}</span>
+                        <span>{new Date(post.createdAt).toDateString()}</span>
+                    </div>
                 </div>
 
-                {this.renderComments(post)}
+                <table className="table table-striped">
+                    <tbody>
+                    {this.renderComments(post)}
+                    </tbody>
+                </table>
                 <hr/>
+
                 { User.isAuthenticated() &&
                 <form onSubmit={this.handleCommentSubmit}>
                     <label>

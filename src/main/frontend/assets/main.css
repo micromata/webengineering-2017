@@ -25,10 +25,27 @@ body {
     color: red;
 }
 
+.post-detail {
+    margin-bottom: 20px;
+}
+
 .post-detail span {
     padding-right: 10px;
 }
 
 .post-detail .post-title {
     font-weight: bold;
+    font-size: 28px;
+}
+
+.post-detail .post-subtitle {
+    color: gray;
+}
+
+.post-comment {
+    margin-top: 20px;
+}
+
+.post-comment span {
+    padding-right: 10px;
 }
