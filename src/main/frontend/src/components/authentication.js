@@ -78,17 +78,30 @@ class Authentication extends React.Component {
         let loginComponent = null;
         if (User.isNotAuthenticated()) {
             loginComponent =
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Email
-                        <input type="text" name="email" value={this.state.email} onChange={this.handleEmailChange}/>
-                    </label>
-                    <label>
-                        Password
-                        <input type="password" name="password" value={this.state.password}
-                               onChange={this.handlePasswordChange}/>
-                    </label>
-                    <input type="submit" value="Submit"/>
+                <form onSubmit={this.handleSubmit} className="form-horizontal">
+                    <div className="form-group">
+                        <label className="col-sm-2">
+                            Email
+                        </label>
+                        <div className="col-sm-4">
+                            <input type="text" className="form-control"
+                                   autoFocus={true}
+                                   value={this.state.email}
+                                   onChange={this.handleEmailChange}/>
+                        </div>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="col-sm-2">
+                            Password
+                        </label>
+                        <div className="col-sm-4">
+                            <input type="password" name="password" className="form-control"
+                                   value={this.state.password}
+                                   onChange={this.handlePasswordChange}/>
+                        </div>
+                    </div>
+                    <input type="submit" className="btn btn-success" value="Submit"/>
                 </form>
         } else {
             loginComponent =
