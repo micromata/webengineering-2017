@@ -7,6 +7,8 @@ class PostList extends React.Component {
         this.state = {
             posts: []
         }
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     // This function is called before render() to initialize its state.
@@ -33,17 +35,18 @@ class PostList extends React.Component {
             });
     }
 
+    handleClick(id) {
+        this.props.history.push(`/post/${id}`);
+    }
 
     renderPosts() {
-        // {/*<Link to={`/post/${post.id}`} key={post.id}>*/}
         return this.state.posts.map((post => {
             return (
-                <tr key={post.id}>
+                <tr key={post.id} onClick={() => this.handleClick(post.id)}>
                     <td>{post.createdAt}</td>
                     <td>{post.title} </td>
                     <td>{post.author.email}</td>
                 </tr>
-                // </Link>
             );
         }));
     }
@@ -52,7 +55,7 @@ class PostList extends React.Component {
     render() {
         return (
             <div className="component">
-                <table className="table table-bordered">
+                <table className="table table-hover">
                     <thead>
                     <tr>
                         <th className="col-sm-2">Created at</th>
