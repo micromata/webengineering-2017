@@ -43,6 +43,13 @@ class PostDetail extends React.Component {
             });
     }
 
+    deletePost(id) {
+        axios.delete(`/api/post/${id}`)
+            .then((data) => {
+                this.props.history.push("/");
+            });
+    }
+
     renderComments(post) {
         return post.comments.map((comment => {
             return (
@@ -66,12 +73,22 @@ class PostDetail extends React.Component {
             <div>
                 {/*A row in a bootstrap context must be stored in a container*/}
                 <div className="container-fluid post-detail">
-                    <span className="post-title">{post.title}</span>
+                    <div>
+                        <span className="post-title">{post.title}</span>
+                        <div className="pull-right delete-button">
+                            { User.isAuthenticated() && User.id === post.author.id &&
+                            <button
+                                onClick={() => this.deletePost(post.id)}
+                                className="btn btn-danger">Delete</button>
+                            }
+                        </div>
+                    </div>
                     <div className="post-subtitle">
                         <span>{post.author.email}</span>
                         <span>@</span>
                         <span>{new Date(post.createdAt).toDateString()}</span>
                     </div>
+
                 </div>
 
                 <table className="table table-striped">
