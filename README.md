@@ -15,6 +15,7 @@ and Wicket named
 
 * [lecture-2017-07-10/thymeleaf](https://github.com/micromata/webengineering-2017/tree/lecture-2017-07-10/thymeleaf) 
 * [lecture-2017-07-10/wicket](https://github.com/micromata/webengineering-2017/tree/lecture-2017-07-10/wicket)
+* [lecture-2017-07-10/websockets](https://github.com/micromata/webengineering-2017/tree/lecture-2017-07-10/websockets)
 
 ## Slides and videos
 
