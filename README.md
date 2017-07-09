@@ -8,6 +8,14 @@ This is the repository for the lecture Webengineering in the summer semester 201
 * [Anonymous feedback](https://lecture-feedback.herokuapp.com)
 * [Michael](mailto:mlesniak@micromata.de)
 
+## Branches
+
+In addition to the master-branch which contains the main project there are two branches with examples for Thymeleaf 
+and Wicket named 
+
+* [lecture-2017-07-10/thymeleaf](https://github.com/micromata/webengineering-2017/tree/lecture-2017-07-10/thymeleaf) 
+* [lecture-2017-07-10/wicket](https://github.com/micromata/webengineering-2017/tree/lecture-2017-07-10/wicket)
+
 ## Slides and videos
 
 * 2017-07-03 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-07-03-webengineering.pdf) [video](https://youtu.be/giTHdwEAztw)
