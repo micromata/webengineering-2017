@@ -3,7 +3,7 @@
 
 // See https://de.wikipedia.org/wiki/WebSocket
 
-var url = "<to be defined>";
+var url = "ws://localhost:8080/message";
 var socket = new WebSocket(url);
 
 socket.onopen = function () {
@@ -12,7 +12,7 @@ socket.onopen = function () {
 
 
 socket.onmessage = function (messageEvent) {
-    console.log(messageEvent.data);
+    console.log("> " + messageEvent.data);
 };
 
 socket.onerror = function (errorEvent) {
