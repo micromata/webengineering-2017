@@ -27,3 +27,10 @@ socket.onclose = function (closeEvent) {
 send = function (msg) {
     socket.send(msg);
 }
+
+
+function sendMessage(event) {
+    event.preventDefault();
+    var message = document.getElementById("form").elements["message"].value;
+    send(message);
+}

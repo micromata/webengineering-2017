@@ -5,6 +5,13 @@
 <body>
 
 <h1>Websocket example</h1>
+<hr/>
+<form id="form" onsubmit="sendMessage(event)">
+    <input type="text" name="message" placeholder="Your message" size="50" autofocus="autofocus"/>
+    <input type="submit" value="Send"/>
+</form>
+
+
 <script src="websocket.js"></script>
 </body>
 </html>
