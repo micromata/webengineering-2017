@@ -8,6 +8,7 @@ var socket = new WebSocket(url);
 
 socket.onopen = function () {
     console.log("Connection established...");
+    socket.send("Michael");
 };
 
 
