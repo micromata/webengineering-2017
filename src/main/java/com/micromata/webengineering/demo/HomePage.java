@@ -23,6 +23,8 @@ public class HomePage extends BasePage {
         form.add(new TextField<>("msgInput", messageModel));
         add(form);
 
+        // This looks like a problem with Intellij -- since I can't get the compiler to emit the same warning
+        // messages even when I use -Xlint:all. C'est la vie ...
         add(new Link("link") {
             @Override
             public void onClick() {
