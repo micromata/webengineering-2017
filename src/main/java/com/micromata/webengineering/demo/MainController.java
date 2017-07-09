@@ -10,7 +10,7 @@ import java.util.Date;
 public class MainController {
     @RequestMapping("/")
     public String index(Model model) {
-        model.addAttribute("date", new Date());
+        model.addAttribute("value", new Date());
         return "index";
     }
 }
