@@ -1,6 +1,9 @@
 package com.micromata.webengineering.demo;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,5 +18,12 @@ public class ExamplePage extends WebPage {
         for (int i = 0; i < 10; i++) {
             list.add(UUID.randomUUID().toString());
         }
+
+        ListView listview = new ListView("list", list) {
+            protected void populateItem(ListItem item) {
+                item.add(new Label("element", item.getModel()));
+            }
+        };
+        add(listview);
     }
 }
