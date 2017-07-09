@@ -32,9 +32,6 @@ public class MessageHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         clients.add(session);
-
-        TextMessage msg = new TextMessage("Hello!");
-        session.sendMessage(msg);
     }
 
     @Override

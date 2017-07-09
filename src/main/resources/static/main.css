@@ -1,0 +1,26 @@
+.input {
+    background-color: #3b5998;
+    padding: 22px 4px 4px;
+    /*margin: auto;*/
+    width: 100%;
+    text-align: center;
+}
+
+.input .text {
+    border: 1px solid #d8dfea;
+    background: white;
+    box-shadow: none;
+    border-radius: 0px;
+    font-size: 20px;
+    width: 90%;
+}
+
+.message {
+    margin: 5px;
+    padding: 5px;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
