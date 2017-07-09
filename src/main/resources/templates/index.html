@@ -4,7 +4,7 @@
 <body>
 <span data-th-text="${value}">Date will be shown here...</span>
 <form action="/form" method="post">
-    <input type="text" name="value" data-th-value="${value}" size="50"/>
+    <input type="text" name="value" data-th-placeholder="${value}" size="50" autofocus="autofocus"/>
     <input type="submit" value="Set message"/>
 </form>
 </body>
