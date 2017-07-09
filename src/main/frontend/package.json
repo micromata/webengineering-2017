@@ -6,7 +6,7 @@
   "repository": "https://github.com/micromata/webengineering-2017",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "node ./node_modules/.bin/webpack -w"
+    "start": "webpack -w"
   },
   "author": "Michael Lesniak <mlesniak@micromata.de>",
   "devDependencies": {
