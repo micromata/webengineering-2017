@@ -1,13 +1,7 @@
 <html xmlns:wicket="http://wicket.apache.org">
-<head>
-    <link rel="stylesheet" href="main.css"/>
-</head>
 <body>
 
-<div class="header">
-    HEADER
-</div>
-<div class="body">
+<wicket:extend>
     <span wicket:id="message">Message goes here</span>
 
     <form wicket:id="form">
@@ -18,9 +12,7 @@
     <div>
         <a wicket:id="link">Link</a>
     </div>
-</div>
-<div class="footer">
-    FOOTER
-</div>
+</wicket:extend>
+
 </body>
 </html>

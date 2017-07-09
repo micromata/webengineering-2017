@@ -1,7 +1,6 @@
 package com.micromata.webengineering.demo;
 
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -12,7 +11,7 @@ import org.apache.wicket.model.PropertyModel;
  * Default homepage for Wicket.
  */
 @WicketHomePage
-public class HomePage extends WebPage {
+public class HomePage extends BasePage {
     private String message = "Hello world (variable)";
 
     public HomePage() {
