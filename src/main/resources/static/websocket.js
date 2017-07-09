@@ -30,6 +30,8 @@ send = function (msg) {
 
 function sendMessage(event) {
     event.preventDefault();
-    var message = document.getElementById("form").elements["message"].value;
+    let element = document.getElementById("form").elements["message"];
+    var message = element.value;
+    element.value = '';
     send(message);
 }
