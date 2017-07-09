@@ -13,6 +13,9 @@ socket.onopen = function () {
 
 socket.onmessage = function (messageEvent) {
     console.log("> " + messageEvent.data);
+
+    var div = document.getElementById('output');
+    div.innerHTML += "\n" + messageEvent.data;
 };
 
 socket.onerror = function (errorEvent) {
