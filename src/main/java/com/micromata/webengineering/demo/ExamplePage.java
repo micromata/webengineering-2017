@@ -18,7 +18,7 @@ public class ExamplePage extends BasePage {
             list.add(UUID.randomUUID().toString());
         }
 
-        ListView listview = new ListView("list", list) {
+        ListView<String> listview = new ListView<String>("list", list) {
             protected void populateItem(ListItem item) {
                 item.add(new Label("element", item.getModel()));
             }
