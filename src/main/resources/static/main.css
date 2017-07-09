@@ -1,0 +1,19 @@
+/*Styles to exemplify header, body and footer.*/
+
+.header {
+    border: 1px solid green;
+    padding: 5px;
+    margin: 10px;
+}
+
+.body {
+    border: 1px solid red;
+    padding: 5px;
+    margin: 10px;
+}
+
+.footer {
+    border: 1px solid blue;
+    padding: 5px;
+    margin: 10px;
+}
