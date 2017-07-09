@@ -17,9 +17,7 @@ public class MessageHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        // Simulate delay...
-        Thread.sleep(3000);
-        TextMessage msg = new TextMessage("Hello, " + message.getPayload() + "!");
+        TextMessage msg = new TextMessage("Received <" + message.getPayload() + ">");
         session.sendMessage(msg);
 
         Iterator<WebSocketSession> it = clients.iterator();
