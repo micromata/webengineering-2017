@@ -3,7 +3,7 @@
 </head>
 <body>
 <span data-th-text="${value}">Date will be shown here...</span>
-<form>
+<form action="/form" method="post">
     <input type="text" name="value" data-th-value="${value}" size="50"/>
     <input type="submit" value="Set message"/>
 </form>
