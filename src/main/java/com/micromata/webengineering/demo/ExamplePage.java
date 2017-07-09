@@ -1,6 +1,5 @@
 package com.micromata.webengineering.demo;
 
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
@@ -9,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-public class ExamplePage extends WebPage {
+public class ExamplePage extends BasePage {
     private List<String> list;
 
     public ExamplePage() {
