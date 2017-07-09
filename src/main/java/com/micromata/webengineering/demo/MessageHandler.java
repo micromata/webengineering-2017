@@ -17,9 +17,6 @@ public class MessageHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        TextMessage msg = new TextMessage("Received <" + message.getPayload() + ">");
-        session.sendMessage(msg);
-
         Iterator<WebSocketSession> it = clients.iterator();
         while (it.hasNext()) {
             WebSocketSession chatPartner = it.next();
