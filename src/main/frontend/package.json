@@ -12,14 +12,13 @@
   "devDependencies": {
     "babel-core": "6.24.1",
     "babel-loader": "7.0.0-beta.1",
-    "babel-preset-es2015": "6.24.1",
+    "babel-preset-env": "^1.5.2",
     "babel-preset-react": "6.24.1",
     "webpack": "2.4.1",
     "copy-webpack-plugin": "4.0.1"
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "babel-preset-stage-1": "6.24.1",
     "i18next": "^8.4.2",
     "i18next-xhr-backend": "^1.4.2",
     "react": "15.5.4",
