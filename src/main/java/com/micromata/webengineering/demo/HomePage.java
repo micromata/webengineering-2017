@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.PropertyModel;
 
 /**
@@ -22,5 +23,12 @@ public class HomePage extends WebPage {
         Form<?> form = new Form("form");
         form.add(new TextField<>("msgInput", messageModel));
         add(form);
+
+        add(new Link("link") {
+            @Override
+            public void onClick() {
+                setResponsePage(ExamplePage.class);
+            }
+        });
     }
 }
