@@ -4,9 +4,7 @@
 </head>
 <body>
 
-<div class="header">
-    HEADER
-</div>
+<div data-th-replace="fragments/header :: header"/>
 <div class="body">
     <span data-th-text="${value}">Date will be shown here...</span>
     <form action="/form" method="post">
@@ -14,8 +12,6 @@
         <input type="submit" value="Set message"/>
     </form>
 </div>
-<div class="footer">
-    FOOTER
-</div>
+<div data-th-replace="fragments/footer :: footer"/>
 </body>
 </html>
