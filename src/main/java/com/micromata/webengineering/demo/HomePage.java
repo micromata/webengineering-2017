@@ -9,7 +9,9 @@ import org.apache.wicket.markup.html.basic.Label;
  */
 @WicketHomePage
 public class HomePage extends WebPage {
+    private String message = "Hello world (variable)";
+
     public HomePage() {
-        add(new Label("message", "Hello World!"));
+        add(new Label("message", message));
     }
 }
