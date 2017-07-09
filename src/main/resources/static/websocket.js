@@ -23,3 +23,7 @@ socket.onerror = function (errorEvent) {
 socket.onclose = function (closeEvent) {
     console.log('Connection closed. Code: ' + closeEvent.code + '; Reason: ' + closeEvent.reason);
 };
+
+send = function (msg) {
+    socket.send(msg);
+}
