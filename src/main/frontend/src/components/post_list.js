@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import User from "../util/User";
 
 class PostList extends React.Component {
     constructor(props) {
@@ -7,6 +8,8 @@ class PostList extends React.Component {
         this.state = {
             posts: []
         }
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     // This function is called before render() to initialize its state.
@@ -20,19 +23,25 @@ class PostList extends React.Component {
     }
 
 
-    deletePost(id) {
-        // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
-        // No error handling for now, e.g. if the user is not authenticated.
-        axios.delete(`/api/post/${id}`);
+    handleClick(id) {
+        this.props.history.push(`/post/${id}`);
     }
-
 
     renderPosts() {
         return this.state.posts.map((post => {
+            let isAuthor = false;
+            if (User.isAuthenticated && User.id == post.author.id) {
+                isAuthor = true;
+            }
+
+            let date = new Date(post.createdAt).toDateString();
+
             return (
-                <li key={post.id}>
-                    {post.id} {post.title} <span onClick={() => this.deletePost(post.id)}>DELETE</span>
-                </li>
+                <tr key={post.id} onClick={() => this.handleClick(post.id)} className={isAuthor ? 'success' : ''}>
+                    <td>{date}</td>
+                    <td>{post.title} </td>
+                    <td>{post.author.email}</td>
+                </tr>
             );
         }));
     }
@@ -40,11 +49,19 @@ class PostList extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Posts</h1>
-                <ul>
+            <div className="component">
+                <table className="table table-hover">
+                    <thead>
+                    <tr>
+                        <th className="col-sm-2">Created at</th>
+                        <th className="col-sm-8">Title</th>
+                        <th className="col-sm-2">Author</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {this.renderPosts()}
-                </ul>
+                    </tbody>
+                </table>
             </div>
         );
     }

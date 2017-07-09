@@ -1,0 +1,55 @@
+
+body {
+    padding-top: 75px;
+}
+
+.component {
+    /*border: 1px solid lightgray;*/
+    /*margin: 10px;*/
+    /*padding: 5px;*/
+}
+
+.component h1 {
+    /*text-align: right;*/
+    /*color: lightgray;*/
+    /*margin: 5px;*/
+    /*font-size: 20px;*/
+}
+
+.component a {
+    text-decoration: none;
+    color: black;
+}
+
+.component .error {
+    color: red;
+}
+
+.post-detail {
+    margin-bottom: 20px;
+}
+
+.post-detail span {
+    padding-right: 5px;
+}
+
+.post-detail .post-title {
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.post-detail .post-subtitle {
+    color: gray;
+}
+
+.post-detail .delete-button {
+
+}
+
+.post-comment {
+    margin-top: 20px;
+}
+
+.post-comment span {
+    padding-right: 10px;
+}
