@@ -1,5 +1,6 @@
 package com.micromata.webengineering.demo;
 
+import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -39,5 +40,10 @@ public class MessageHandler extends TextWebSocketHandler {
 
         TextMessage msg = new TextMessage("Hello!");
         session.sendMessage(msg);
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        clients.remove(session);
     }
 }
