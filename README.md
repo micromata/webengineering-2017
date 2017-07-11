@@ -19,6 +19,7 @@ and Wicket named
 
 ## Slides and videos
 
+* 2017-07-10 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-07-10-webengineering.pdf) [video](https://youtu.be/VLej-_wocDA)
 * 2017-07-03 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-07-03-webengineering.pdf) [video](https://youtu.be/giTHdwEAztw)
 * 2017-06-26 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-06-26-webengineering.pdf) [video](https://youtu.be/do5n2_KtWlI)
 * 2017-06-19 [slides](https://github.com/micromata/webengineering-2017/blob/master/slides/2017-06-19-webengineering.pdf) [video](https://youtu.be/SrggUICdfZU)
